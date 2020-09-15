@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon build/index.js"
   },
   "repository": {
     "type": "git",
@@ -16,5 +16,17 @@
   "bugs": {
     "url": "https://github.com/pp-c30/club-leo/issues"
   },
-  "homepage": "https://github.com/pp-c30/club-leo#readme"
+  "homepage": "https://github.com/pp-c30/club-leo#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "mysql2": "^2.1.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.8",
+    "@types/morgan": "^1.9.1",
+    "@types/mysql2": "github:types/mysql2",
+    "nodemon": "^2.0.4",
+    "ts-node": "^9.0.0"
+  }
 }
