@@ -23,7 +23,33 @@ class imagenobraController {
             const conectar = yield database_1.conexion();
             let imagen = req.body;
             yield conectar.query("insert into imagen_obra set ?", [imagen]);
-            return res.json("la pelicula fue guerdada exitosamente");
+            return res.json("la imagen fue guerdada exitosamente");
+        });
+    }
+    eliminarImagenobra(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const conectar = yield database_1.conexion();
+            let codigo = req.params.id_codigo;
+            yield conectar.query("delete from imagen_obra where id_io = ?", [codigo]);
+            return res.json("la imagen fue eliminada exitosamente");
+        });
+    }
+    //la actualizacion de una pelicular
+    actualizarImagenobra(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const bd = yield database_1.conexion();
+            let codigo = req.params.id_codigo;
+            let nuevos_datos = req.body;
+            yield bd.query("update imagen_obra set ? where id_io = ?", [nuevos_datos, codigo]);
+            return res.json('se actualizo exitosamente!');
+        });
+    }
+    obtenerUnaimagenobra(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const conectar = yield database_1.conexion();
+            let codigo = req.params.id_codigo;
+            let unaimagen = yield conectar.query("select * from imagen_obra where id_io= ?", [codigo]);
+            return res.json(unaimagen);
         });
     }
 }

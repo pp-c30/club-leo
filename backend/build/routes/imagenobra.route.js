@@ -6,4 +6,7 @@ const ImagenobraController = new imagenobra_controller_1.imagenobraController();
 const enrutadorImagenObras = express_1.Router();
 enrutadorImagenObras.route('/imagenobra').get(ImagenobraController.listarImagenobra);
 enrutadorImagenObras.route('/imagenobra').post(ImagenobraController.guardarImagenobra);
+enrutadorImagenObras.route('/imagenobra/:id_codigo').delete(ImagenobraController.eliminarImagenobra);
+enrutadorImagenObras.route('/imagenobra/:id_codigo').put(ImagenobraController.actualizarImagenobra);
+enrutadorImagenObras.route('/imagenobra/:id_codigo').get(ImagenobraController.obtenerUnaimagenobra);
 exports.default = enrutadorImagenObras;
