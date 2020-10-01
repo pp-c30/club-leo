@@ -5,6 +5,7 @@ import { Iimagenobra } from "../models/imagenobras";
 
 export class imagenobraController
 {
+    //Listar imagenes 
     public async listarImagenobra(req:Request, res:Response)
     {
         const conectar = await conexion();
@@ -12,7 +13,8 @@ export class imagenobraController
         return res.json(imagen);
     }
 
-    
+
+    //Guardar imagen 
     public async guardarImagenobra(req:Request, res:Response)
     {
         const conectar = await conexion();
@@ -21,6 +23,7 @@ export class imagenobraController
         return res.json("la imagen fue guerdada exitosamente");
     }
 
+    //La eliminacion de una imagen
     public async eliminarImagenobra(req:Request, res:Response)
     {
         const conectar = await conexion();
@@ -29,19 +32,21 @@ export class imagenobraController
         return res.json("la imagen fue eliminada exitosamente");
     }
 
-       //la actualizacion de una pelicular
-       public async actualizarImagenobra(req:Request, res:Response)
-       {
-           const bd = await conexion();
-           let codigo = req.params.id_codigo;
-           let nuevos_datos = req.body;
+    //La actualizacion de una imagen 
+     public async actualizarImagenobra(req:Request, res:Response)
+    {
+        const bd = await conexion();
+        let codigo = req.params.id_codigo;
+        let nuevos_datos = req.body;
    
-           await bd.query("update imagen_obra set ? where id_io = ?", [nuevos_datos,codigo]);
+        await bd.query("update imagen_obra set ? where id_io = ?", [nuevos_datos,codigo]);
    
-           return res.json('se actualizo exitosamente!');
+        return res.json('se actualizo exitosamente!');
    
-       }
+    }
 
+
+    //Obtener una imagen 
     public async obtenerUnaimagenobra(req:Request, res:Response)
     {
         const conectar = await conexion();
