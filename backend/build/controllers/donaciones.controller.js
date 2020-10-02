@@ -9,53 +9,53 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.obraController = void 0;
+exports.donacionesController = void 0;
 const database_1 = require("../database");
-class obraController {
-    //Listar obras
-    listarObra(req, res) {
+class donacionesController {
+    //Listar todas las donaciones
+    listarDonaciones(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const conectar = yield database_1.conexion();
-            let obra = yield conectar.query("select * from obra");
-            return res.json(obra);
+            let donaciones = yield conectar.query("select * from donaciones");
+            return res.json(donaciones);
         });
     }
-    //Guardar Obra
-    guardarObra(req, res) {
+    //Guardar donaciones
+    guardarDonaciones(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const conectar = yield database_1.conexion();
-            let Obra = req.body;
-            yield conectar.query("insert into obra set ?", [Obra]);
-            return res.json("La obra fue guerdada exitosamente");
+            let Donaciones = req.body;
+            yield conectar.query("insert into donaciones set ?", [Donaciones]);
+            return res.json("Las donaciones fueron guardadas exitosamente");
         });
     }
-    //Eliminar una obra
-    eliminarObra(req, res) {
+    //Eliminar una donacion
+    eliminarDonacion(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const conectar = yield database_1.conexion();
             let codigo = req.params.id_codigo;
-            yield conectar.query("delete from obra where id_obra = ?", [codigo]);
-            return res.json("La obra fue eliminada exitosamente");
+            yield conectar.query("delete from donacion where id_donacion = ?", [codigo]);
+            return res.json("La donacion fue eliminada exitosamente");
         });
     }
-    //La actualizacion de un obra
-    actualizarObra(req, res) {
+    //La actualizacion de una donacion
+    actualizarDonaciones(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const bd = yield database_1.conexion();
             let codigo = req.params.id_codigo;
             let nuevos_datos = req.body;
-            yield bd.query("update obra set ? where id_obra = ?", [nuevos_datos, codigo]);
-            return res.json('La obra se actualizo exitosamente!');
+            yield bd.query("update donaciones set ? where id_donacion = ?", [nuevos_datos, codigo]);
+            return res.json('La donacion se actualizo exitosamente!');
         });
     }
-    //Obtener una obra 
-    obtenerObra(req, res) {
+    //Obtener una donacion
+    obtenerDonacion(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const conectar = yield database_1.conexion();
             let codigo = req.params.id_codigo;
-            let unaobra = yield conectar.query("select * from obra where id_obra = ?", [codigo]);
-            return res.json(unaobra);
+            let donacion = yield conectar.query("select * from donacion where id_donacion= ?", [codigo]);
+            return res.json(donacion);
         });
     }
 }
-exports.obraController = obraController;
+exports.donacionesController = donacionesController;

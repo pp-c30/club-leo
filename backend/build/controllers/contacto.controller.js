@@ -9,53 +9,53 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.obraController = void 0;
+exports.contactoController = void 0;
 const database_1 = require("../database");
-class obraController {
-    //Listar obras
-    listarObra(req, res) {
+class contactoController {
+    //Listar todos los contactos
+    listarContactos(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const conectar = yield database_1.conexion();
-            let obra = yield conectar.query("select * from obra");
-            return res.json(obra);
+            let contacto = yield conectar.query("select * from contactos");
+            return res.json(contacto);
         });
     }
-    //Guardar Obra
-    guardarObra(req, res) {
+    //Guardar contacto
+    guardarContacto(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const conectar = yield database_1.conexion();
-            let Obra = req.body;
-            yield conectar.query("insert into obra set ?", [Obra]);
-            return res.json("La obra fue guerdada exitosamente");
+            let Contacto = req.body;
+            yield conectar.query("insert into contacto set ?", [Contacto]);
+            return res.json("El contacto se guardo exitosamente");
         });
     }
-    //Eliminar una obra
-    eliminarObra(req, res) {
+    //Eliminar un contacto
+    eliminarContacto(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const conectar = yield database_1.conexion();
             let codigo = req.params.id_codigo;
-            yield conectar.query("delete from obra where id_obra = ?", [codigo]);
-            return res.json("La obra fue eliminada exitosamente");
+            yield conectar.query("delete from contacto where id_contacto = ?", [codigo]);
+            return res.json("El contacto fue eliminado exitosamente");
         });
     }
-    //La actualizacion de un obra
-    actualizarObra(req, res) {
+    //Actualizar un contacto
+    actualizarContacto(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const bd = yield database_1.conexion();
             let codigo = req.params.id_codigo;
             let nuevos_datos = req.body;
-            yield bd.query("update obra set ? where id_obra = ?", [nuevos_datos, codigo]);
-            return res.json('La obra se actualizo exitosamente!');
+            yield bd.query("update donaciones set ? where id_contacto = ?", [nuevos_datos, codigo]);
+            return res.json('El contacto se actualizo exitosamente!');
         });
     }
-    //Obtener una obra 
-    obtenerObra(req, res) {
+    //Obtener un contacto
+    obtenerContacto(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const conectar = yield database_1.conexion();
             let codigo = req.params.id_codigo;
-            let unaobra = yield conectar.query("select * from obra where id_obra = ?", [codigo]);
-            return res.json(unaobra);
+            let contacto = yield conectar.query("select * from donacion where id_contacto= ?", [codigo]);
+            return res.json(contacto);
         });
     }
 }
-exports.obraController = obraController;
+exports.contactoController = contactoController;

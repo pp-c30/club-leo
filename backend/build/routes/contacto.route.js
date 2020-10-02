@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const contacto_controller_1 = require("../controllers/contacto.controller");
+const ContactoController = new contacto_controller_1.contactoController();
+const enrutadorContacto = express_1.Router();
+enrutadorContacto.route('/contacto').get(ContactoController.listarContactos);
+enrutadorContacto.route('/contacto').post(ContactoController.guardarContacto);
+enrutadorContacto.route('/contacto/:id_codigo').delete(ContactoController.eliminarContacto);
+enrutadorContacto.route('/contacto/:id_codigo').put(ContactoController.actualizarContacto);
+enrutadorContacto.route('/contacto/:id_codigo').get(ContactoController.obtenerContacto);
+exports.default = enrutadorContacto;
