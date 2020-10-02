@@ -28,6 +28,7 @@ export class server{
     {
         this.app.use(enrutadorIndex);
         this.app.use(enrutadorImagenObras);
+        this.app.use(enrutadorObras);
     }
 
     middleware()
