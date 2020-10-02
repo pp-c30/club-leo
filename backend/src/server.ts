@@ -2,6 +2,7 @@ import express, {Application} from "express"; //me traigo la funcion aplicacion 
 import enrutadorIndex  from "./routes/index.route";
 import  enrutadorImagenObras  from "./routes/imagenobra.route";
 import enrutadorObras from "./routes/obra.route";
+import enrutadorDonaciones from "./routes/donaciones.route";
 
 export class server{
     app:Application;
@@ -29,6 +30,7 @@ export class server{
         this.app.use(enrutadorIndex);
         this.app.use(enrutadorImagenObras);
         this.app.use(enrutadorObras);
+        this.app.use(enrutadorDonaciones);
     }
 
     middleware()
