@@ -10,51 +10,51 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const database_1 = require("../database");
-class imagenobraController {
-    //Listar imagenes 
-    listarImagenobra(req, res) {
+class obraController {
+    //Listar obras
+    listarObra(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const conectar = yield database_1.conexion();
-            let imagen = yield conectar.query("select * from imagen_obra");
-            return res.json(imagen);
+            let obra = yield conectar.query("select * from obra");
+            return res.json(obra);
         });
     }
-    //Guardar imagen 
-    guardarImagenobra(req, res) {
+    //Guardar Obra
+    guardarObra(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const conectar = yield database_1.conexion();
-            let imagen = req.body;
-            yield conectar.query("insert into imagen_obra set ?", [imagen]);
-            return res.json("la imagen fue guerdada exitosamente");
+            let Obra = req.body;
+            yield conectar.query("insert into obra set ?", [Obra]);
+            return res.json("La obra fue guerdada exitosamente");
         });
     }
-    //La eliminacion de una imagen
-    eliminarImagenobra(req, res) {
+    //Eliminar una obra
+    eliminarObra(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const conectar = yield database_1.conexion();
             let codigo = req.params.id_codigo;
-            yield conectar.query("delete from imagen_obra where id_io = ?", [codigo]);
-            return res.json("la imagen fue eliminada exitosamente");
+            yield conectar.query("delete from obra where id_obra = ?", [codigo]);
+            return res.json("La obra fue eliminada exitosamente");
         });
     }
-    //La actualizacion de una imagen 
-    actualizarImagenobra(req, res) {
+    //La actualizacion de un obra
+    actualizarObra(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const bd = yield database_1.conexion();
             let codigo = req.params.id_codigo;
             let nuevos_datos = req.body;
-            yield bd.query("update imagen_obra set ? where id_io = ?", [nuevos_datos, codigo]);
-            return res.json('se actualizo exitosamente!');
+            yield bd.query("update obra set ? where id_obra = ?", [nuevos_datos, codigo]);
+            return res.json('La obra se actualizo exitosamente!');
         });
     }
-    //Obtener una imagen 
-    obtenerUnaimagenobra(req, res) {
+    //Obtener una obra 
+    obtenerObra(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const conectar = yield database_1.conexion();
             let codigo = req.params.id_codigo;
-            let unaimagen = yield conectar.query("select * from imagen_obra where id_io= ?", [codigo]);
-            return res.json(unaimagen);
+            let unaobra = yield conectar.query("select * from obra where id_obra = ?", [codigo]);
+            return res.json(unaobra);
         });
     }
 }
-exports.imagenobraController = imagenobraController;
+exports.obraController = obraController;

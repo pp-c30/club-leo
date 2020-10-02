@@ -28,7 +28,7 @@ export class obraController
     {
         const conectar = await conexion();
         let codigo = req.params.id_codigo;
-        await conectar.query("delete from obra where id_io = ?", [codigo]);
+        await conectar.query("delete from obra where id_obra = ?", [codigo]);
         return res.json("La obra fue eliminada exitosamente");
     }
 
@@ -39,7 +39,7 @@ export class obraController
         let codigo = req.params.id_codigo;
         let nuevos_datos = req.body;
    
-        await bd.query("update obra set ? where id_io = ?", [nuevos_datos,codigo]);
+        await bd.query("update obra set ? where id_obra = ?", [nuevos_datos,codigo]);
    
         return res.json('La obra se actualizo exitosamente!');
    
@@ -51,7 +51,7 @@ export class obraController
     {
         const conectar = await conexion();
         let codigo = req.params.id_codigo;
-        let unaobra = await conectar.query("select * from imagen_obra where id_io= ?", [codigo]);
+        let unaobra = await conectar.query("select * from obra where id_obra = ?", [codigo]);
         return res.json(unaobra); 
 
     }

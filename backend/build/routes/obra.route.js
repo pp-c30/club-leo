@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const obra_controller_1 = require("../controllers/obra.controller");
+const ObraController = new obra_controller_1.obraController();
+const enrutadorObras = express_1.Router();
+enrutadorObras.route('/obra').get(ObraController.listarObra);
+enrutadorObras.route('/obra').post(ObraController.guardarObra);
+enrutadorObras.route('/obra/:id_codigo').delete(ObraController.eliminarObra);
+enrutadorObras.route('/obra/:id_codigo').put(ObraController.actualizarObra);
+enrutadorObras.route('/obra/:id_codigo').get(ObraController.obtenerObra);
+exports.default = enrutadorObras;
