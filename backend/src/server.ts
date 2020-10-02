@@ -1,6 +1,7 @@
 import express, {Application} from "express"; //me traigo la funcion aplicacion de express y express
 import enrutadorIndex  from "./routes/index.route";
 import  enrutadorImagenObras  from "./routes/imagenobra.route";
+import enrutadorObras from "./routes/obra.route";
 
 export class server{
     app:Application;
