@@ -7,6 +7,7 @@ const express_1 = __importDefault(require("express")); //me traigo la funcion ap
 const index_route_1 = __importDefault(require("./routes/index.route"));
 const imagenobra_route_1 = __importDefault(require("./routes/imagenobra.route"));
 const obra_route_1 = __importDefault(require("./routes/obra.route"));
+const donaciones_route_1 = __importDefault(require("./routes/donaciones.route"));
 class server {
     constructor() {
         this.app = express_1.default();
@@ -25,6 +26,7 @@ class server {
         this.app.use(index_route_1.default);
         this.app.use(imagenobra_route_1.default);
         this.app.use(obra_route_1.default);
+        this.app.use(donaciones_route_1.default);
     }
     middleware() {
         this.app.use(express_1.default.json());
