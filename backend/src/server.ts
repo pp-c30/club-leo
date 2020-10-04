@@ -3,6 +3,7 @@ import enrutadorIndex  from "./routes/index.route";
 import  enrutadorImagenObras  from "./routes/imagenobra.route";
 import enrutadorObras from "./routes/obra.route";
 import enrutadorDonaciones from "./routes/donaciones.route";
+import enrutadorContacto from "./routes/contacto.route";
 
 export class server{
     app:Application;
@@ -31,6 +32,7 @@ export class server{
         this.app.use(enrutadorImagenObras);
         this.app.use(enrutadorObras);
         this.app.use(enrutadorDonaciones);
+        this.app.use(enrutadorContacto);
     }
 
     middleware()
