@@ -9,9 +9,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.imagenobraController = void 0;
 const database_1 = require("../database");
-class imagenobraController {
+class ImagenobraController {
     //Listar imagenes 
     listarImagenobra(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -53,9 +52,9 @@ class imagenobraController {
         return __awaiter(this, void 0, void 0, function* () {
             const conectar = yield database_1.conexion();
             let codigo = req.params.id_codigo;
-            let unaimagen = yield conectar.query("select * from imagen_obra where id_io= ?", [codigo]);
+            let unaimagen = yield conectar.query("select * from imagen_obra where id_io = ?", [codigo]);
             return res.json(unaimagen);
         });
     }
 }
-exports.imagenobraController = imagenobraController;
+exports.ImagenobraController = ImagenobraController;

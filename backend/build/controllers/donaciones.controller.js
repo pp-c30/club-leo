@@ -9,10 +9,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-<<<<<<< HEAD
-=======
-exports.donacionesController = void 0;
->>>>>>> 8fce91f22e4408f3a21ffce9ec613ea8a7dff486
 const database_1 = require("../database");
 class donacionesController {
     //Listar todas las donaciones

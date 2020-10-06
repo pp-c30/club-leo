@@ -1,15 +1,17 @@
 import { Router } from "express";
-import { imagenobraController } from "../controllers/imagenobra.controller";
+//importamos la clase del archivo controller para hacer uso en la ruta
+import { ImagenobraController } from "../controllers/imagenobra.controller"; 
 
-const ImagenobraController = new imagenobraController();
-const enrutadorImagenObras = Router();
+//creamos una instancia de la clase 
+const imagenobraController = new ImagenobraController(); 
+const enrutadorImagenObras = Router(); 
 
+//hacemos uso de las funciones de router en la variable enrutador
+enrutadorImagenObras.route('/imagenobra').get(imagenobraController.listarImagenobra);
+enrutadorImagenObras.route('/imagenobra').post(imagenobraController.guardarImagenobra);
+enrutadorImagenObras.route('/imagenobra/:id_codigo').delete(imagenobraController.eliminarImagenobra);
+enrutadorImagenObras.route('/imagenobra/:id_codigo').put(imagenobraController.actualizarImagenobra);
+enrutadorImagenObras.route('/imagenobra/:id_codigo').get(imagenobraController.obtenerUnaimagenobra);
 
-enrutadorImagenObras.route('/imagenobra').get(ImagenobraController.listarImagenobra);
-enrutadorImagenObras.route('/imagenobra').post(ImagenobraController.guardarImagenobra);
-enrutadorImagenObras.route('/imagenobra/:id_codigo').delete(ImagenobraController.eliminarImagenobra);
-enrutadorImagenObras.route('/imagenobra/:id_codigo').put(ImagenobraController.actualizarImagenobra);
-enrutadorImagenObras.route('/imagenobra/:id_codigo').get(ImagenobraController.obtenerUnaimagenobra);
-
-
+//exportamos las rutas
 export default enrutadorImagenObras;

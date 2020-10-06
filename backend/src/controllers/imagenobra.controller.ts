@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 import { Iimagenobra } from "../models/imagenobras";
 
 
-export class imagenobraController
+export class ImagenobraController
 {
     //Listar imagenes 
     public async listarImagenobra(req:Request, res:Response)
@@ -51,7 +51,7 @@ export class imagenobraController
     {
         const conectar = await conexion();
         let codigo = req.params.id_codigo;
-        let unaimagen = await conectar.query("select * from imagen_obra where id_io= ?", [codigo]);
+        let unaimagen = await conectar.query("select * from imagen_obra where id_io = ?", [codigo]);
         return res.json(unaimagen); 
 
     }

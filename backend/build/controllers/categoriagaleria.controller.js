@@ -10,51 +10,51 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const database_1 = require("../database");
-class tipoobraController {
-    //Listar todos los tipos de obras
-    listarTipoObra(req, res) {
+class CategoriagaleriaController {
+    //listar categorias 
+    listarCategoriagaleria(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const conectar = yield database_1.conexion();
-            let tipoobra = yield conectar.query("select * from tipoobra");
-            return res.json(tipoobra);
+            let categoria = yield conectar.query("select * from categoria_galeria");
+            return res.json(categoria);
         });
     }
-    //Guardar tipos de obras
-    guardarTipoObra(req, res) {
+    //Guardar una categoria 
+    guardarCategoriagaleria(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const conectar = yield database_1.conexion();
-            let TipoObra = req.body;
-            yield conectar.query("insert into tipoobra set ?", [TipoObra]);
-            return res.json("Los tipos de obra fueron guardadas exitosamente");
+            let descripcion = req.body;
+            yield conectar.query("insert into categoria_galeria set ?", [descripcion]);
+            return res.json('La categoría fue guardada exitosamente!');
         });
     }
-    //Eliminar un tipo de obra
-    eliminarTipoObra(req, res) {
+    //Eliminar una categoria 
+    eliminarCategoriagaleria(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const conectar = yield database_1.conexion();
             let codigo = req.params.id_codigo;
-            yield conectar.query("delete from tipoobra where id_tipo = ?", [codigo]);
-            return res.json("el tipo de obra fue eliminado exitosamente");
+            yield conectar.query("delete from categoria_galeria where id_cg = ?", [codigo]);
+            return res.json('La categoría fue eliminada exitosamente!');
         });
     }
-    //La actualizacion de un tipo de obra
-    actualizarTipoObra(req, res) {
+    //La actualización una categoria
+    actualizarCategoriagaleria(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const bd = yield database_1.conexion();
+            const conectar = yield database_1.conexion();
             let codigo = req.params.id_codigo;
             let nuevos_datos = req.body;
-            yield bd.query("update tipoobra set ? where id_tipo = ?", [nuevos_datos, codigo]);
-            return res.json('el tipo de obra se actualizo exitosamente!');
+            yield conectar.query("update categoria_galeria set ? where id_cg = ?", [nuevos_datos, codigo]);
+            return res.json('La categoría se actualizo exitosamente!');
         });
     }
-    //Obtener un tipo de obra
-    obtenerTipoObra(req, res) {
+    //Se obtiene una categoria
+    obtenerUnacategoriagaleria(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const conectar = yield database_1.conexion();
             let codigo = req.params.id_codigo;
-            let tipoobra = yield conectar.query("select * from tipoobra where id_tipo= ?", [codigo]);
-            return res.json(tipoobra);
+            let categoria = yield conectar.query('select * from categoria_galeria where id_cg = ?', [codigo]);
+            return res.json(categoria);
         });
     }
 }
-exports.tipoobraController = tipoobraController;
+exports.CategoriagaleriaController = CategoriagaleriaController;

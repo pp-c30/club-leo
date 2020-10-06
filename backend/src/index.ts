@@ -1,9 +1,11 @@
-import { server } from "./server"; //me traigo la clase server del archivo server
+import { Server } from "./server"; //me traigo la clase server del archivo server
 
+//Creamos una funcion principal para luego ejecutar el server
 function principal() 
 {
-    const servidor = new server(); //se instancia la clase para luego ser ejecutada
-    servidor.listen(); //luego tambien se correra el servidor
+    const servidor = new Server(); //Se crea la instancia de la clase
+    servidor.listen(); //Nos traemos el metodo listen para ejecutarla
 }
 
-principal(); // se ejecuta la funcion principal
+//Se ejecuta la funcion principal
+principal(); 
