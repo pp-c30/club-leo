@@ -2,9 +2,9 @@ import { Router } from "express";
 //importamos la clase del archivo controller para hacer uso en la ruta
 import { CategoriadonacionController } from "../controllers/categoriadonacion.controller";
 
-let enrutadorCategoriadonacion = Router();
+const enrutadorCategoriadonacion = Router();
 //creamos una instancia de la clase 
-let categoriadonacionController = new CategoriadonacionController();
+const categoriadonacionController = new CategoriadonacionController();
 
 //hacemos uso de las funciones de router en la variable enrutador
 enrutadorCategoriadonacion.route('/categoriadonacion').get(categoriadonacionController.listarCategoriadonacion);

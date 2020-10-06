@@ -3,9 +3,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 //importamos la clase del archivo controller para hacer uso en la ruta
 const categoriadonacion_controller_1 = require("../controllers/categoriadonacion.controller");
-let enrutadorCategoriadonacion = express_1.Router();
+const enrutadorCategoriadonacion = express_1.Router();
 //creamos una instancia de la clase 
-let categoriadonacionController = new categoriadonacion_controller_1.CategoriadonacionController();
+const categoriadonacionController = new categoriadonacion_controller_1.CategoriadonacionController();
 //hacemos uso de las funciones de router en la variable enrutador
 enrutadorCategoriadonacion.route('/categoriadonacion').get(categoriadonacionController.listarCategoriadonacion);
 enrutadorCategoriadonacion.route('/categoriadonacion').post(categoriadonacionController.guardarCategoriadonacion);

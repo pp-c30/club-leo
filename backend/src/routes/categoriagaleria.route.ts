@@ -2,9 +2,9 @@
 import { CategoriagaleriaController } from "../controllers/categoriagaleria.controller";
 import { Router } from "express";
 
-let enrutadorCategoriagaleria = Router();
+const enrutadorCategoriagaleria = Router();
 //creamos una instancia de la clase 
-let categoriagaleriaController = new CategoriagaleriaController;
+const categoriagaleriaController = new CategoriagaleriaController;
 
 //hacemos uso de las funciones de router en la variable enrutador
 enrutadorCategoriagaleria.route('/categoriagaleria').get(categoriagaleriaController.listarCategoriagaleria);
