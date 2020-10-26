@@ -14,6 +14,10 @@ const contacto_route_1 = __importDefault(require("./routes/contacto.route"));
 const quienessomos_route_1 = __importDefault(require("./routes/quienessomos.route"));
 const categoriagaleria_route_1 = __importDefault(require("./routes/categoriagaleria.route"));
 const categoriadonacion_route_1 = __importDefault(require("./routes/categoriadonacion.route"));
+//importamos cors y morgan
+const cors_1 = __importDefault(require("cors"));
+const morgan_1 = __importDefault(require("morgan"));
+const path_1 = __importDefault(require("path"));
 class Server {
     //en el constructor se ejecutaran los metodos
     constructor() {
@@ -40,10 +44,15 @@ class Server {
         this.app.use(quienessomos_route_1.default);
         this.app.use(categoriagaleria_route_1.default);
         this.app.use(categoriadonacion_route_1.default);
+        //la app usara la ruta upload para que el navegador pueda leer la carpeta y las imagenes
+        this.app.use('/upload', express_1.default.static(path_1.default.resolve('uploads')));
     }
     //Usaremos el formato json en nuestra app
+    //usaremos cors y morgan para utilizar dos servidores y hacer las solicitudes http
     middleware() {
         this.app.use(express_1.default.json());
+        this.app.use(cors_1.default());
+        this.app.use(morgan_1.default('dev'));
     }
 }
 exports.Server = Server;

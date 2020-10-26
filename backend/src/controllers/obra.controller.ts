@@ -1,6 +1,15 @@
 import { conexion } from "../database";
 import { Request, Response } from "express";
 import { Obra } from "../models/obra";
+import cloudinary from "cloudinary";
+import fs from "fs-extra";
+
+cloudinary.v2.config({
+    cloud_name:'dnicjefgk',
+    api_key:'415915133939975',
+    api_secret:'VDGJ90dhgbybFw_gzAUdJe3raig'
+})
+
 
 
 export class obraController
@@ -18,9 +27,37 @@ export class obraController
     public async guardarObra(req:Request, res:Response)
     {
         const conectar = await conexion();
-        let Obra:Obra = req.body;
-        await conectar.query("insert into obra set ?", [Obra]);
-        return res.json("La obra fue guerdada exitosamente");
+        let files:any = req.files;
+        const t = req.body.nombre_titulo;
+        const d = req.body.nombre_descripcion;
+        const c = req.body.nombre_categoria;
+        const fecha = req.body.la_fecha;
+        const tipos = req.body.nombre_tipo;
+
+
+        const unaObra = {
+            titulo:t,
+            descripcion:d,
+            categoria:c,
+            fecha_obra:fecha,
+            tipo:tipos
+        }
+
+        const resultado = await conectar.query('insert into obra set ?',[unaObra]);
+
+        for(let i = 0; i < files.length; i++)
+        {
+            const resultado_cloudinary = await cloudinary.v2.uploader.upload(files[i].path);
+            const imagen_obra = {
+                id_obra:resultado.insertId,
+                imagen:resultado_cloudinary.url,
+                public_id:resultado_cloudinary.public_id,
+                categoria_obra:c
+            }
+            await conectar.query('insert into imagen_obra set ?', [imagen_obra]);
+            await fs.unlink(files[i].path);
+        }
+        return res.json('se guardo exitosamente');
     }
 
     //Eliminar una obra

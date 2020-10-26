@@ -8,8 +8,18 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const database_1 = require("../database");
+const cloudinary_1 = __importDefault(require("cloudinary"));
+const fs_extra_1 = __importDefault(require("fs-extra"));
+cloudinary_1.default.v2.config({
+    cloud_name: 'dnicjefgk',
+    api_key: '415915133939975',
+    api_secret: 'VDGJ90dhgbybFw_gzAUdJe3raig'
+});
 class obraController {
     //Listar obras
     listarObra(req, res) {
@@ -23,9 +33,32 @@ class obraController {
     guardarObra(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const conectar = yield database_1.conexion();
-            let Obra = req.body;
-            yield conectar.query("insert into obra set ?", [Obra]);
-            return res.json("La obra fue guerdada exitosamente");
+            let files = req.files;
+            const t = req.body.nombre_titulo;
+            const d = req.body.nombre_descripcion;
+            const c = req.body.nombre_categoria;
+            const fecha = req.body.la_fecha;
+            const tipos = req.body.nombre_tipo;
+            const unaObra = {
+                titulo: t,
+                descripcion: d,
+                categoria: c,
+                fecha_obra: fecha,
+                tipo: tipos
+            };
+            const resultado = yield conectar.query('insert into obra set ?', [unaObra]);
+            for (let i = 0; i < files.length; i++) {
+                const resultado_cloudinary = yield cloudinary_1.default.v2.uploader.upload(files[i].path);
+                const imagen_obra = {
+                    id_obra: resultado.insertId,
+                    imagen: resultado_cloudinary.url,
+                    public_id: resultado_cloudinary.public_id,
+                    categoria_obra: c
+                };
+                yield conectar.query('insert into imagen_obra set ?', [imagen_obra]);
+                yield fs_extra_1.default.unlink(files[i].path);
+            }
+            return res.json('se guardo exitosamente');
         });
     }
     //Eliminar una obra

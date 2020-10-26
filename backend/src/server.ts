@@ -10,6 +10,12 @@ import  enrutadorQuienesSomos  from "./routes/quienessomos.route";
 import enrutadorCategoriagaleria from "./routes/categoriagaleria.route";
 import enrutadorCategoriadonacion from "./routes/categoriadonacion.route";
 
+//importamos cors y morgan
+import cors  from "cors";
+import  morgan  from "morgan";
+
+import path from "path";
+
 export class Server{
     //Al atributo le decimos que es de tipo aplicacion para que pueda almacenar express
     app:Application;
@@ -45,12 +51,17 @@ export class Server{
         this.app.use(enrutadorQuienesSomos);
         this.app.use(enrutadorCategoriagaleria);
         this.app.use(enrutadorCategoriadonacion);
+        //la app usara la ruta upload para que el navegador pueda leer la carpeta y las imagenes
+        this.app.use('/upload', express.static(path.resolve('uploads')));
     }
 
     //Usaremos el formato json en nuestra app
+    //usaremos cors y morgan para utilizar dos servidores y hacer las solicitudes http
     middleware()
     {
         this.app.use(express.json());
+        this.app.use(cors());
+        this.app.use(morgan('dev'));
     }
 }
 
