@@ -65,8 +65,13 @@ export class obraController
     {
         const conectar = await conexion();
         let codigo = req.params.id_codigo;
+        try{
         await conectar.query("delete from obra where id_obra = ?", [codigo]);
         return res.json("La obra fue eliminada exitosamente");
+
+        }catch (error) {
+            return res.json("No se pudo eliminar una obra que este siendo utilizada por una imagen");
+        }
     }
 
     //La actualizacion de un obra

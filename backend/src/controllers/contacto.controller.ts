@@ -9,7 +9,7 @@ export class contactoController
     public async listarContactos(req:Request, res:Response)
     {
         const conectar = await conexion();
-        let contacto = await conectar.query("select * from contactos");
+        let contacto = await conectar.query("select * from contacto");
         return res.json(contacto);
     }
 
@@ -39,7 +39,7 @@ export class contactoController
         let codigo = req.params.id_codigo;
         let nuevos_datos = req.body;
    
-        await bd.query("update donaciones set ? where id_contacto = ?", [nuevos_datos,codigo]);
+        await bd.query("update contacto set ? where id_contacto = ?", [nuevos_datos,codigo]);
    
         return res.json('El contacto se actualizo exitosamente!');
    
@@ -51,7 +51,7 @@ export class contactoController
     {
         const conectar = await conexion();
         let codigo = req.params.id_codigo;
-        let contacto = await conectar.query("select * from donacion where id_contacto= ?", [codigo]);
+        let contacto = await conectar.query("select * from contacto where id_contacto= ?", [codigo]);
         return res.json(contacto); 
 
     }

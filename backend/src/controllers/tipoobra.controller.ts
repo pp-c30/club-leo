@@ -9,7 +9,7 @@ export class tipoobraController
     public async listarTipoObra(req:Request, res:Response)
     {
         const conectar = await conexion();
-        let tipoobra = await conectar.query("select * from tipoobra");
+        let tipoobra = await conectar.query("select * from tipo_obra");
         return res.json(tipoobra);
     }
 
@@ -19,7 +19,7 @@ export class tipoobraController
     {
         const conectar = await conexion();
         let TipoObra:TipoObra = req.body;
-        await conectar.query("insert into tipoobra set ?", [TipoObra]);
+        await conectar.query("insert into tipo_obra set ?", [TipoObra]);
         return res.json("Los tipos de obra fueron guardadas exitosamente");
     }
 
@@ -28,7 +28,7 @@ export class tipoobraController
     {
         const conectar = await conexion();
         let codigo = req.params.id_codigo;
-        await conectar.query("delete from tipoobra where id_tipo = ?", [codigo]);
+        await conectar.query("delete from tipo_obra where id_tipo = ?", [codigo]);
         return res.json("el tipo de obra fue eliminado exitosamente");
     }
 
@@ -39,7 +39,7 @@ export class tipoobraController
         let codigo = req.params.id_codigo;
         let nuevos_datos = req.body;
    
-        await bd.query("update tipoobra set ? where id_tipo = ?", [nuevos_datos,codigo]);
+        await bd.query("update tipo_obra set ? where id_tipo = ?", [nuevos_datos,codigo]);
    
         return res.json('el tipo de obra se actualizo exitosamente!');
    
@@ -51,7 +51,7 @@ export class tipoobraController
     {
         const conectar = await conexion();
         let codigo = req.params.id_codigo;
-        let tipoobra = await conectar.query("select * from tipoobra where id_tipo= ?", [codigo]);
+        let tipoobra = await conectar.query("select * from tipo_obra where id_tipo= ?", [codigo]);
         return res.json(tipoobra); 
 
     }

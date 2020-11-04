@@ -28,7 +28,7 @@ export class donacionesController
     {
         const conectar = await conexion();
         let codigo = req.params.id_codigo;
-        await conectar.query("delete from donacion where id_donacion = ?", [codigo]);
+        await conectar.query("delete from donaciones where id_donacion = ?", [codigo]);
         return res.json("La donacion fue eliminada exitosamente");
     }
 
@@ -51,7 +51,7 @@ export class donacionesController
     {
         const conectar = await conexion();
         let codigo = req.params.id_codigo;
-        let donacion = await conectar.query("select * from donacion where id_donacion= ?", [codigo]);
+        let donacion = await conectar.query("select * from donaciones where id_donacion= ?", [codigo]);
         return res.json(donacion); 
 
     }

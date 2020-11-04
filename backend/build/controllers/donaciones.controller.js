@@ -33,7 +33,7 @@ class donacionesController {
         return __awaiter(this, void 0, void 0, function* () {
             const conectar = yield database_1.conexion();
             let codigo = req.params.id_codigo;
-            yield conectar.query("delete from donacion where id_donacion = ?", [codigo]);
+            yield conectar.query("delete from donaciones where id_donacion = ?", [codigo]);
             return res.json("La donacion fue eliminada exitosamente");
         });
     }
@@ -52,7 +52,7 @@ class donacionesController {
         return __awaiter(this, void 0, void 0, function* () {
             const conectar = yield database_1.conexion();
             let codigo = req.params.id_codigo;
-            let donacion = yield conectar.query("select * from donacion where id_donacion= ?", [codigo]);
+            let donacion = yield conectar.query("select * from donaciones where id_donacion= ?", [codigo]);
             return res.json(donacion);
         });
     }

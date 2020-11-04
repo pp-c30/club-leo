@@ -15,7 +15,7 @@ class tipoobraController {
     listarTipoObra(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const conectar = yield database_1.conexion();
-            let tipoobra = yield conectar.query("select * from tipoobra");
+            let tipoobra = yield conectar.query("select * from tipo_obra");
             return res.json(tipoobra);
         });
     }
@@ -24,7 +24,7 @@ class tipoobraController {
         return __awaiter(this, void 0, void 0, function* () {
             const conectar = yield database_1.conexion();
             let TipoObra = req.body;
-            yield conectar.query("insert into tipoobra set ?", [TipoObra]);
+            yield conectar.query("insert into tipo_obra set ?", [TipoObra]);
             return res.json("Los tipos de obra fueron guardadas exitosamente");
         });
     }
@@ -33,7 +33,7 @@ class tipoobraController {
         return __awaiter(this, void 0, void 0, function* () {
             const conectar = yield database_1.conexion();
             let codigo = req.params.id_codigo;
-            yield conectar.query("delete from tipoobra where id_tipo = ?", [codigo]);
+            yield conectar.query("delete from tipo_obra where id_tipo = ?", [codigo]);
             return res.json("el tipo de obra fue eliminado exitosamente");
         });
     }
@@ -43,7 +43,7 @@ class tipoobraController {
             const bd = yield database_1.conexion();
             let codigo = req.params.id_codigo;
             let nuevos_datos = req.body;
-            yield bd.query("update tipoobra set ? where id_tipo = ?", [nuevos_datos, codigo]);
+            yield bd.query("update tipo_obra set ? where id_tipo = ?", [nuevos_datos, codigo]);
             return res.json('el tipo de obra se actualizo exitosamente!');
         });
     }
@@ -52,7 +52,7 @@ class tipoobraController {
         return __awaiter(this, void 0, void 0, function* () {
             const conectar = yield database_1.conexion();
             let codigo = req.params.id_codigo;
-            let tipoobra = yield conectar.query("select * from tipoobra where id_tipo= ?", [codigo]);
+            let tipoobra = yield conectar.query("select * from tipo_obra where id_tipo= ?", [codigo]);
             return res.json(tipoobra);
         });
     }

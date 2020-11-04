@@ -15,7 +15,7 @@ class contactoController {
     listarContactos(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const conectar = yield database_1.conexion();
-            let contacto = yield conectar.query("select * from contactos");
+            let contacto = yield conectar.query("select * from contacto");
             return res.json(contacto);
         });
     }
@@ -43,7 +43,7 @@ class contactoController {
             const bd = yield database_1.conexion();
             let codigo = req.params.id_codigo;
             let nuevos_datos = req.body;
-            yield bd.query("update donaciones set ? where id_contacto = ?", [nuevos_datos, codigo]);
+            yield bd.query("update contacto set ? where id_contacto = ?", [nuevos_datos, codigo]);
             return res.json('El contacto se actualizo exitosamente!');
         });
     }
@@ -52,7 +52,7 @@ class contactoController {
         return __awaiter(this, void 0, void 0, function* () {
             const conectar = yield database_1.conexion();
             let codigo = req.params.id_codigo;
-            let contacto = yield conectar.query("select * from donacion where id_contacto= ?", [codigo]);
+            let contacto = yield conectar.query("select * from contacto where id_contacto= ?", [codigo]);
             return res.json(contacto);
         });
     }
