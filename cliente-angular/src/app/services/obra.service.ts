@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Iobra } from "../models/obra";
+import { IobraDetalle } from "../models/obra-detalle";
+
 @Injectable({
   providedIn: 'root'
 })
@@ -14,7 +16,6 @@ export class ObraService {
     fd.append('titulo',datosObra.titulo);
     fd.append('descripcion',datosObra.descripcion);
     fd.append('categoria',datosObra.categoria);
-    fd.append('imagen',datosObra.imagen);
     fd.append('fecha_obra',datosObra.fecha_obra);
     fd.append('tipo',datosObra.tipo);
 
@@ -29,5 +30,10 @@ export class ObraService {
   getObras()
   {
     return this.http.get<Iobra[]>('http://localhost:3000/obra');
+  }
+
+  getImagesObras(id_obra:number)
+  {
+    return this.http.get<IobraDetalle[]>('http://localhost:3000/obra-imagenes'+id_obra);
   }
 }

@@ -28,11 +28,11 @@ export class obraController
     {
         const conectar = await conexion();
         let files:any = req.files;
-        const t = req.body.nombre_titulo;
-        const d = req.body.nombre_descripcion;
-        const c = req.body.nombre_categoria;
-        const fecha = req.body.la_fecha;
-        const tipos = req.body.nombre_tipo;
+        const t = req.body.titulo;
+        const d = req.body.descripcion;
+        const c = req.body.categoria;
+        const fecha = req.body.fecha_obra;
+        const tipos = req.body.tipo;
 
 
         const unaObra = {
@@ -95,7 +95,15 @@ export class obraController
         let codigo = req.params.id_codigo;
         let unaobra = await conectar.query("select * from obra where id_obra = ?", [codigo]);
         return res.json(unaobra); 
+    }
 
+    //lista de imagenes de obra de la tabla imagenes_obra
+    public async listarImagenesObra(req:Request, res:Response)
+    {
+        let id_obra = req.params.id_obra;
+        let conectar = await conexion();
+        let lista_imagenes = await conectar.query('select * from imagen_obra where id_io = ?', [id_obra]);
+        return res.json(lista_imagenes);
     }
 
 }

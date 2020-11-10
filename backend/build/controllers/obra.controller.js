@@ -34,11 +34,11 @@ class obraController {
         return __awaiter(this, void 0, void 0, function* () {
             const conectar = yield database_1.conexion();
             let files = req.files;
-            const t = req.body.nombre_titulo;
-            const d = req.body.nombre_descripcion;
-            const c = req.body.nombre_categoria;
-            const fecha = req.body.la_fecha;
-            const tipos = req.body.nombre_tipo;
+            const t = req.body.titulo;
+            const d = req.body.descripcion;
+            const c = req.body.categoria;
+            const fecha = req.body.fecha_obra;
+            const tipos = req.body.tipo;
             const unaObra = {
                 titulo: t,
                 descripcion: d,

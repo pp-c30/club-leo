@@ -3,6 +3,8 @@ import { Iobra } from 'src/app/models/obra';
 import { ObraService } from "../../services/obra.service";
 import { FormBuilder, FormGroup, Validators} from "@angular/forms";
 import { IHtmlInputEvent } from "../../models/inputElement";
+import { NgxSpinnerService } from "ngx-spinner";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-admin-obra',
@@ -16,22 +18,21 @@ export class AdminObraComponent implements OnInit {
   //para almacenar varias imagenes
   archivos:FileList;
   //almacena las imagenes url
-  imagenes_url = []
+  imagenes_url = [];
 
-  constructor(private serviceObra:ObraService, private fb:FormBuilder) { 
+  constructor(private router:Router ,private spinner:NgxSpinnerService ,private fb:FormBuilder, private serviceObra:ObraService) { 
     this.formObra = this.fb.group({
-      titulo:['',[Validators.required]],
-      descripcion:['',[Validators.required]],
+      titulo:[''],
+      descripcion:[''],
       categoria:[''],
       tipo:[''],
       fecha_obra:[''],
-      imagen:['',[Validators.required]],
       archivo:['']
-      
     });
   }
 
   ngOnInit(): void {
+    //apenas inicie la app se ejecutara este metodo
     this.listaObras();
   }
 
@@ -46,7 +47,19 @@ export class AdminObraComponent implements OnInit {
 
   guardarObra()
   {
-
+    this.spinner.show();
+    this.serviceObra.saveObra(this.formObra.value, this.archivos).subscribe(
+      resultado => {
+        console.log(resultado);
+        //vaciar las imagenes previas del formulario
+        this.imagenes_url = [];
+        //resetear el formulario
+        this.formObra.reset();
+        this.listaObras();
+        this.spinner.hide();
+      },
+      error => console.log(error)
+    )
   }
 
   mostrarImagenSeleccionada(evento:IHtmlInputEvent)
@@ -67,6 +80,12 @@ export class AdminObraComponent implements OnInit {
         
       }
     }
+  }
+
+  //metodo encargado de mostrar el detalle del evento
+  detalleObra(id_obra:number)
+  {
+    this.router.navigate(['/admin-detalle-obra', id_obra]);
   }
 
 }
