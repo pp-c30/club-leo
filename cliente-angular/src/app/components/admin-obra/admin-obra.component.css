@@ -1,5 +1,22 @@
-#table{
-  position: relative;
-  right: 12px;
+
+table tr td{
+  padding: 0.125em 0.125em;
+  
+  height: auto;
+  text-align: center;
 }
 
+
+
+table tr th
+{
+  text-align: center;
+}
+
+
+#imagen
+{
+    height: 100px;
+    width: 116px;
+    overflow: auto;
+  }

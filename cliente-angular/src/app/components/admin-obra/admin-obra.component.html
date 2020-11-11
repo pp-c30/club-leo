@@ -52,7 +52,7 @@
                       <span class="carousel-control-next-icon" aria-hidden="true"></span>
                       <span class="sr-only">Next</span>
                     </a>
-                  </div>
+                </div>
 
 
 
@@ -71,12 +71,13 @@
                 Grilla de obras
             </div>
 
-            <div class="card-body">
-                <table id="table" class="table table-striped">
+            <div  class="card-body">
+                <div id="lol">
+                <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>Id</th>
-                            <div id="titulo"><th id="titulo">Titulo</th></div>
+                            <th>Titulo</th>
                             <th>Descripción</th>
                             <th>Categoria</th>
                             <th>Imagen</th>
@@ -89,9 +90,9 @@
                         <tr *ngFor="let fila of obras">
                             <td>{{fila.id_obra}}</td>
                             <td>{{fila.titulo}}</td>
-                            <td>{{fila.descripcion}}</td>
+                          <div id="imagen"><td>{{fila.descripcion}}</td></div>
                             <td>{{fila.categoria}}</td>
-                            <td>{{fila.imagen}}</td>
+                          <div id="imagen"><td>{{fila.imagen}}</td></div>
                             <td>{{fila.fecha_obra}}</td>
                             <td>{{fila.tipo}}</td>
                             <td>
@@ -102,6 +103,7 @@
                         </tr>
                     </tbody>
                 </table>
+            </div>
             </div>
         </div>
     </div>
