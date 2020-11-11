@@ -13,7 +13,7 @@ enrutadorObras.route('/obra').post(multer.array('img_obra'),ObraController.guard
 enrutadorObras.route('/obra/:id_codigo').delete(ObraController.eliminarObra);
 enrutadorObras.route('/obra/:id_codigo').put(ObraController.actualizarObra);
 enrutadorObras.route('/obra/:id_codigo').get(ObraController.obtenerObra);
-enrutadorObras.route('/obra-imagenes/:id_obra').get(ObraController.listarImagenesObra);
+enrutadorObras.route('/obra-imagen/:id_obra').get(ObraController.listarImagenesObra);
 
 
 export default enrutadorObras;

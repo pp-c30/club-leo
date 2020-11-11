@@ -34,6 +34,6 @@ export class ObraService {
 
   getImagesObras(id_obra:number)
   {
-    return this.http.get<IobraDetalle[]>('http://localhost:3000/obra-imagenes'+id_obra);
+    return this.http.get<IobraDetalle[]>('http://localhost:3000/obra-imagen/'+id_obra);
   }
 }

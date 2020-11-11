@@ -102,7 +102,7 @@ export class obraController
     {
         let id_obra = req.params.id_obra;
         let conectar = await conexion();
-        let lista_imagenes = await conectar.query('select * from imagen_obra where id_io = ?', [id_obra]);
+        let lista_imagenes = await conectar.query('select * from imagen_obra where id_obra = ?', [id_obra]);
         return res.json(lista_imagenes);
     }
 

@@ -15,7 +15,7 @@ export class AdminDetalleObraComponent implements OnInit {
   constructor(private activatedRoute:ActivatedRoute, private serviceObra:ObraService) { }
 
   ngOnInit(): void {
-    //aca capturamos la id de las imagenes de las obras
+    //aca capturamos la id de las imagenes de las obras 
     this.activatedRoute.params.subscribe(
       params => {
         this.id_obra = params.id_obra
@@ -34,6 +34,6 @@ export class AdminDetalleObraComponent implements OnInit {
       },
       error => console.log(error)
     )
-  }
+  };
 
 }

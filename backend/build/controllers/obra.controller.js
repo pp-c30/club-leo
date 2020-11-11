@@ -99,7 +99,7 @@ class obraController {
         return __awaiter(this, void 0, void 0, function* () {
             let id_obra = req.params.id_obra;
             let conectar = yield database_1.conexion();
-            let lista_imagenes = yield conectar.query('select * from imagen_obra where id_io = ?', [id_obra]);
+            let lista_imagenes = yield conectar.query('select * from imagen_obra where id_obra = ?', [id_obra]);
             return res.json(lista_imagenes);
         });
     }
