@@ -12,7 +12,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.obraController = void 0;
 const database_1 = require("../database");
 const cloudinary_1 = __importDefault(require("cloudinary"));
 const fs_extra_1 = __importDefault(require("fs-extra"));
@@ -102,6 +101,24 @@ class obraController {
             let conectar = yield database_1.conexion();
             let lista_imagenes = yield conectar.query('select * from imagen_obra where id_obra = ?', [id_obra]);
             return res.json(lista_imagenes);
+        });
+    }
+    guardarImagenesObra(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const conectar = yield database_1.conexion();
+            const archivos = req.files;
+            let id_obra = req.params.id_obra;
+            for (let i = 0; i < archivos.length; i++) {
+                const resultado_cloudinary = yield cloudinary_1.default.v2.uploader.upload(archivos[i].path);
+                const imagenes_obra = {
+                    id_obra: id_obra,
+                    imagen_url: resultado_cloudinary.url,
+                    public_id: resultado_cloudinary.public_id
+                };
+                yield conectar.query('insert into imagen_obra set ?', [imagenes_obra]);
+                yield fs_extra_1.default.unlink(archivos[i].path);
+            }
+            return res.json('Se agregaron las imagenes de manera exitosa!');
         });
     }
 }

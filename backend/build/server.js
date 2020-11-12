@@ -3,7 +3,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Server = void 0;
 //me traigo la funcion aplicacion de express y express
 const express_1 = __importDefault(require("express"));
 //nos importamos los enrutadores

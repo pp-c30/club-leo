@@ -106,4 +106,24 @@ export class obraController
         return res.json(lista_imagenes);
     }
 
+    public async guardarImagenesObra(req:Request, res:Response)
+    {
+        const conectar = await conexion();
+        const archivos:any = req.files;
+        let id_obra = req.params.id_obra;
+        for (let i = 0; i < archivos.length; i++) {
+            const resultado_cloudinary = await cloudinary.v2.uploader.upload(archivos[i].path);
+
+            const imagenes_obra = {
+                id_obra:id_obra,
+                imagen_url:resultado_cloudinary.url,
+                public_id:resultado_cloudinary.public_id
+            }
+            await conectar.query('insert into imagen_obra set ?', [imagenes_obra]);
+            await fs.unlink(archivos[i].path);
+        } 
+       return res.json('Se agregaron las imagenes de manera exitosa!');
+
+    }
+
 }

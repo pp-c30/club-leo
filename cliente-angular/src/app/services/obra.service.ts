@@ -36,4 +36,13 @@ export class ObraService {
   {
     return this.http.get<IobraDetalle[]>('http://localhost:3000/obra-imagen/'+id_obra);
   }
+
+  addImagesObras(id_obra:number, files:FileList)
+  {
+    const fd = new FormData();
+    for (let i = 0; i < files.length; i++) {
+      fd.append('img-obra',files[i]);
+    }
+    return this.http.put('http://localhost:3000/agregar-imagenes-obra/'+id_obra, fd);
+  }
 }

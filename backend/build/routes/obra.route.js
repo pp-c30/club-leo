@@ -16,4 +16,6 @@ enrutadorObras.route('/obra/:id_codigo').delete(ObraController.eliminarObra);
 enrutadorObras.route('/obra/:id_codigo').put(ObraController.actualizarObra);
 enrutadorObras.route('/obra/:id_codigo').get(ObraController.obtenerObra);
 enrutadorObras.route('/obra-imagen/:id_obra').get(ObraController.listarImagenesObra);
+//el put es para agregar un body y tambien recibir parametros 
+enrutadorObras.route('agregar-imagenes-obra/:id_obra').put(multer_1.default.array('img-obra'), ObraController.guardarImagenesObra);
 exports.default = enrutadorObras;
