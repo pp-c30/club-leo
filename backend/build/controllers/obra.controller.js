@@ -51,7 +51,7 @@ class obraController {
                 const resultado_cloudinary = yield cloudinary_1.default.v2.uploader.upload(files[i].path);
                 const imagen_obra = {
                     id_obra: resultado.insertId,
-                    imagen: resultado_cloudinary.url,
+                    imagen_url: resultado_cloudinary.url,
                     public_id: resultado_cloudinary.public_id,
                     categoria_obra: c
                 };

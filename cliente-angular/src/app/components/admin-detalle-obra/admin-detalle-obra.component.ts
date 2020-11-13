@@ -20,7 +20,7 @@ export class AdminDetalleObraComponent implements OnInit {
   constructor(private fb:FormBuilder ,private activatedRoute:ActivatedRoute, private serviceObra:ObraService) 
   {
     this.formDetalleObra = this.fb.group({
-      archivo:['']
+      archivos:['']
     });
   }
 
@@ -75,9 +75,10 @@ export class AdminDetalleObraComponent implements OnInit {
         this.formDetalleObra.reset();
         this.listarImagenesObra(this.id_obra);
         this.imagenes_leidas = [];
-      }
-    ),
-    error => console.log(error)
+      },
+      error => console.log(error)
+    );
+    
   }
 
 }

@@ -4,7 +4,7 @@ export interface Obra
     titulo:string;
     descripcion:string;
     categoria:string;
-    imagen:string;
+    imagen?:string;
     fecha_obra:string;
     tipo:number;
 
