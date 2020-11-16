@@ -10,10 +10,18 @@ const enrutadorObras = Router();
 enrutadorObras.route('/obra').get(ObraController.listarObra);
 //primero se ejecutara multer y luego el controller 
 enrutadorObras.route('/obra').post(multer.array('img_obra'),ObraController.guardarObra);
-enrutadorObras.route('/obra/:id_codigo').delete(ObraController.eliminarObra);
-enrutadorObras.route('/obra/:id_codigo').put(ObraController.actualizarObra);
+
+
 enrutadorObras.route('/obra/:id_codigo').get(ObraController.obtenerObra);
 enrutadorObras.route('/obra-imagen/:id_obra').get(ObraController.listarImagenesObra);
 //el put es para agregar un body y tambien recibir parametros 
 enrutadorObras.route('/agregar-imagenes-obra/:id_obra').put(multer.array('img-obra'), ObraController.guardarImagenesObra);
+//resibiremos 2 paramateros para eliminar la imagen de la bdd y de cloudinary
+enrutadorObras.route('/obra-imagen-detalle/:id_io/:public_id').delete(ObraController.eliminarImagenesObra);
+//eliminar la obra
+enrutadorObras.route('/obra/:id_obra').delete(ObraController.eliminarObra);
+//actualizar obra
+enrutadorObras.route('/obras/:id_obra').put(ObraController.actualizarObra);
+
+
 export default enrutadorObras;

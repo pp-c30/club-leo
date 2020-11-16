@@ -20,13 +20,16 @@ export class AdminObraComponent implements OnInit {
   //almacena las imagenes url
   imagenes_url = [];
 
+  ocultar_boton_file:any = 'display:block'
+
   constructor(private router:Router ,private spinner:NgxSpinnerService ,private fb:FormBuilder, private serviceObra:ObraService) { 
     this.formObra = this.fb.group({
-      titulo:[''],
-      descripcion:[''],
-      categoria:[''],
-      tipo:[''],
-      fecha_obra:[''],
+      id_obra:[null],
+      titulo:['',[Validators.required]],
+      descripcion:['',[Validators.required]],
+      categoria:['',[Validators.required]],
+      tipo:['',[Validators.required]],
+      fecha_obra:['',[Validators.required]],
       archivo:['']
     });
   }
@@ -47,19 +50,34 @@ export class AdminObraComponent implements OnInit {
 
   guardarObra()
   {
-    this.spinner.show();
-    this.serviceObra.saveObra(this.formObra.value, this.archivos).subscribe(
-      resultado => {
-        console.log(resultado);
-        //vaciar las imagenes previas del formulario
-        this.imagenes_url = [];
-        //resetear el formulario
-        this.formObra.reset();
-        this.listaObras();
-        this.spinner.hide();
-      },
-      error => console.log(error)
-    )
+    if(this.formObra.value.id_obra)
+    {
+      this.spinner.show();
+      this.serviceObra.updateObra(this.formObra.value).subscribe(
+        resultado => {
+          this.formObra.reset();
+          this.listaObras();
+          this.spinner.hide();
+        }
+      );
+
+    }else{
+
+      this.spinner.show();
+      this.serviceObra.saveObra(this.formObra.value, this.archivos).subscribe(
+        resultado => {
+          console.log(resultado);
+          //vaciar las imagenes previas del formulario
+          this.imagenes_url = [];
+          //resetear el formulario
+          this.formObra.reset();
+          this.listaObras();
+          this.spinner.hide();
+        },
+        error => console.log(error)
+      );
+    }
+
   }
 
   mostrarImagenSeleccionada(evento:IHtmlInputEvent)
@@ -88,4 +106,45 @@ export class AdminObraComponent implements OnInit {
     this.router.navigate(['/admin-detalle-obra', id_obra]);
   }
 
+  eliminarObra(id_obra:number)
+  {
+    if(confirm('¿Esta seguro de llevar a cabo esta acción?')){
+      this.serviceObra.deleteObra(id_obra).subscribe(
+        resultado => {
+          console.log(resultado);
+          this.listaObras();
+        }
+      );
+    }
+  }
+
+  //se llenara el formulario para editarlo
+  editarObra(datosObra:Iobra)
+  {
+    this.ocultar_boton_file = 'display:none;'
+    this.formObra.setValue({
+      id_obra:datosObra.id_obra,
+      titulo:datosObra.titulo,
+      descripcion:datosObra.descripcion,
+      categoria:datosObra.categoria,
+      tipo:datosObra.tipo,
+      fecha_obra:datosObra.fecha_obra,
+      archivo:''
+    });
+  }
+
+  vaciarForm()
+  {
+    this.ocultar_boton_file = 'display:block;'
+    this.formObra.setValue({
+      id_obra:null,
+      titulo:'',
+      descripcion:'',
+      categoria:'',
+      tipo:'',
+      fecha_obra:'',
+      archivo:''
+    });
+
+  }
 }

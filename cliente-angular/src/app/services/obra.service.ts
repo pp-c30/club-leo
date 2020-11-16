@@ -45,4 +45,20 @@ export class ObraService {
     }
     return this.http.put('http://localhost:3000/agregar-imagenes-obra/'+id_obra, fd);
   }
+
+  deleteImagenObra(id_io:number, public_id:string)
+  {
+    return this.http.delete('http://localhost:3000/obra-imagen-detalle/'+id_io+'/'+public_id);
+  }
+
+  deleteObra(id_obra:number)
+  {
+    return this.http.delete('http://localhost:3000/obra/'+id_obra);
+  }
+
+  updateObra(datosObra:Iobra)
+  {
+    let id_obra = datosObra.id_obra
+    return this.http.put('http://localhost:3000/obras/'+id_obra,datosObra);
+  }
 }

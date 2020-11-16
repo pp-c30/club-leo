@@ -4,6 +4,7 @@ import { ObraService } from "../../services/obra.service";
 import { IobraDetalle } from "../../models/obra-detalle";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { IHtmlInputEvent } from "../../models/inputElement";
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-admin-detalle-obra',
@@ -17,7 +18,7 @@ export class AdminDetalleObraComponent implements OnInit {
   archivos:FileList;
   imagenes_leidas = [];
 
-  constructor(private fb:FormBuilder ,private activatedRoute:ActivatedRoute, private serviceObra:ObraService) 
+  constructor(private spinner:NgxSpinnerService, private fb:FormBuilder ,private activatedRoute:ActivatedRoute, private serviceObra:ObraService) 
   {
     this.formDetalleObra = this.fb.group({
       archivos:['']
@@ -70,15 +71,29 @@ export class AdminDetalleObraComponent implements OnInit {
 
   agregarImagenesObra()
   {
+    this.spinner.show();
     this.serviceObra.addImagesObras(this.id_obra, this.archivos).subscribe(
       resultado => {
         this.formDetalleObra.reset();
         this.listarImagenesObra(this.id_obra);
         this.imagenes_leidas = [];
+        this.spinner.hide();
       },
       error => console.log(error)
     );
-    
   }
+
+  eliminarImagenEvento(id_io:number, public_id:string)
+  {
+    if(confirm('¿Esta seguro de llevar a cabo esta acción?')){
+      this.serviceObra.deleteImagenObra(id_io, public_id).subscribe(
+        resultado => {
+          console.log(resultado);
+          this.listarImagenesObra(this.id_obra);
+        }
+      );
+    }
+  }
+  
 
 }

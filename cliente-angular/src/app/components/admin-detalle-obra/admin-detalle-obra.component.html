@@ -1,63 +1,74 @@
 <div class="row">
 
-    <div class="col-lg-3">
-       <table class="table table-striped">
-         <thead>
-           <tr>
-             <th>Id</th>
-             <th>Imagen</th>
-             <th>Acciones</th>
-           </tr>
-         </thead>
-         <tbody>
-            <tr *ngFor="let fila of imagenes_obra">
-              <td>{{fila.id_io}}</td>
-              <td><img class="img-fluid w-100 " [src]="fila.imagen_url"></td>
-              <td>
-                <div class="btn-group btn-group-sm">
-                  <button class="btn btn-danger">Eliminar</button>
-                </div>
-              </td>
-            </tr>
-         </tbody>
-       </table>
-    </div>
+  <div class="col-lg-4">
+    <div class="card">
+      <div class="card-header">
+        Cargar mas imagenes a la obra
+      </div>
+      <br>
 
-    <div class="col-lg-4">
-      <div class="card">
-        <div class="card-header">
-          Cargar mas imagenes a la obra
-        </div>
-        <br>
-
-        <div class="card-body">
-          <form [formGroup]="formDetalleObra">
-            <div class="form-group">
-              <input (change)="mostrarImagenesPrevias($event)" formControlName="archivos" class="form-control-file" type="file" multiple>
-            </div>
-            <hr>
-            <div class="form-group">
-              <button (click)="agregarImagenesObra()" class="btn btn-success">Agregar imagenes</button>
-            </div>
-          </form>
-
-          <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-              <div *ngFor="let url of imagenes_leidas; let primera = first" [ngClass]="{active:primera}" class="carousel-item">
-                <img [src]="url" class="d-block w-100" alt="...">
-              </div>
-            </div>
-            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="sr-only">Next</span>
-            </a>
+      <div class="card-body">
+        <form [formGroup]="formDetalleObra">
+          <div class="form-group">
+            <input (change)="mostrarImagenesPrevias($event)" formControlName="archivos" class="form-control-file" type="file" multiple>
           </div>
+          <hr>
+          <div class="form-group">
+            <button (click)="agregarImagenesObra()" class="btn btn-success">Agregar imagenes</button>
+          </div>
+        </form>
+
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+            <div *ngFor="let url of imagenes_leidas; let primera = first" [ngClass]="{active:primera}" class="carousel-item">
+              <img [src]="url" class="d-block w-100" alt="...">
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
         </div>
       </div>
     </div>
+  </div>
+
+
+  <div class="col-lg-3">
+    <div class="card">
+      <div class="card-header">
+        Grilla
+      </div>
+
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Imagen</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+           <tr *ngFor="let fila of imagenes_obra">
+             <td>{{fila.id_io}}</td>
+             <td><img style="height: 100px;"  class="img-fluid w-100 " [src]="fila.imagen_url"></td>
+             <td>
+               <div class="btn-group btn-group-sm">
+                 <button (click)="eliminarImagenEvento(fila.id_io, fila.public_id)"class="btn btn-danger">Eliminar</button>
+               </div>
+             </td>
+           </tr>
+        </tbody>
+      </table>
+
+    </div>
+       
+  </div>
 
 </div>
+
+<ngx-spinner></ngx-spinner>

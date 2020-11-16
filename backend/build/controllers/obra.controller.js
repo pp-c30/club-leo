@@ -52,8 +52,7 @@ class obraController {
                 const imagen_obra = {
                     id_obra: resultado.insertId,
                     imagen_url: resultado_cloudinary.url,
-                    public_id: resultado_cloudinary.public_id,
-                    categoria_obra: c
+                    public_id: resultado_cloudinary.public_id
                 };
                 yield conectar.query('insert into imagen_obra set ?', [imagen_obra]);
                 yield fs_extra_1.default.unlink(files[i].path);
@@ -62,7 +61,7 @@ class obraController {
         });
     }
     //Eliminar una obra
-    eliminarObra(req, res) {
+    eliminarCategoriaObra(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const conectar = yield database_1.conexion();
             let codigo = req.params.id_codigo;
@@ -78,11 +77,21 @@ class obraController {
     //La actualizacion de un obra
     actualizarObra(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const bd = yield database_1.conexion();
-            let codigo = req.params.id_codigo;
-            let nuevos_datos = req.body;
-            yield bd.query("update obra set ? where id_obra = ?", [nuevos_datos, codigo]);
-            return res.json('La obra se actualizo exitosamente!');
+            //actuara cuando no lleguen imagenes
+            if (!req.file) {
+                const conectar = yield database_1.conexion();
+                //obtener los datos del body pero solo necesitamos la id para actualizar
+                let unaObra = req.body;
+                const nuesvos_datos = {
+                    titulo: req.body.titulo,
+                    descripcion: req.body.descripcion,
+                    categoria: req.body.categoria,
+                    fecha_obra: req.body.fecha_obra,
+                    tipo: req.body.tipo
+                };
+                yield conectar.query("update obra set ? where id_obra = ?", [nuesvos_datos, unaObra.id_obra]);
+                return res.json('La obra se actualizo exitosamente!');
+            }
         });
     }
     //Obtener una obra 
@@ -119,6 +128,29 @@ class obraController {
                 yield fs_extra_1.default.unlink(archivos[i].path);
             }
             return res.json('Se agregaron las imagenes de manera exitosa!');
+        });
+    }
+    eliminarImagenesObra(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const conectar = yield database_1.conexion();
+            let id_io = req.params.id_io;
+            let public_id = req.params.public_id;
+            yield conectar.query('delete from imagen_obra where id_io = ?', [id_io]);
+            yield cloudinary_1.default.v2.uploader.destroy(public_id);
+            res.json('Se elimino exitosamente!');
+        });
+    }
+    eliminarObra(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let id_obra = req.params.id_obra;
+            const conectar = yield database_1.conexion();
+            let lista_imagenes_obra = yield conectar.query('select * from imagen_obra where id_obra = ?', [id_obra]);
+            for (let i = 0; i < lista_imagenes_obra.length; i++) {
+                yield cloudinary_1.default.v2.uploader.destroy(lista_imagenes_obra[i].public_id);
+            }
+            yield conectar.query('delete from imagen_obra where id_obra = ?', [id_obra]);
+            yield conectar.query('delete from obra where id_obra = ?', [id_obra]);
+            res.json('Se elimino completamente la obra!');
         });
     }
 }
