@@ -22,4 +22,5 @@ enrutadorObras.route('/obra-imagen-detalle/:id_io/:public_id').delete(ObraContro
 enrutadorObras.route('/obra/:id_obra').delete(ObraController.eliminarObra);
 //actualizar obra
 enrutadorObras.route('/obras/:id_obra').put(ObraController.actualizarObra);
+enrutadorObras.route('/obra-portada/:id_io/:id_obra').get(ObraController.establecerPortada);
 exports.default = enrutadorObras;
