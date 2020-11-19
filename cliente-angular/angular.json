@@ -94,7 +94,7 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": [ ]
+            "scripts": []
           }
         },
         "lint": {
@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "cliente-angular"
+    }
+  },
+  "defaultProject": "cliente-angular",
+  "cli": {
+    "analytics": false
+  }
 }
