@@ -11,6 +11,7 @@ import { ReactiveFormsModule} from "@angular/forms";
 import { AdminDetalleObraComponent } from './components/admin-detalle-obra/admin-detalle-obra.component';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { InicioComponent } from './components/inicio/inicio.component';
+import { DonacionesComponent } from './components/donaciones/donaciones.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { InicioComponent } from './components/inicio/inicio.component';
     MenuComponent,
     AdminObraComponent,
     AdminDetalleObraComponent,
-    InicioComponent
+    InicioComponent,
+    DonacionesComponent
   ],
   imports: [
     BrowserModule,
