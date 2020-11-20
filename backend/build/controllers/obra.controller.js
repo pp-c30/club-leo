@@ -154,5 +154,23 @@ class obraController {
             res.json('Se elimino completamente la obra!');
         });
     }
+    establecerPortada(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let id_io = req.params.id_io;
+            let id_obra = req.params.id_obra;
+            const conectar = yield database_1.conexion();
+            //primero se pone todas las imagenes en la columna portada en cero
+            const portadasEnEstadoCero = {
+                portada: 0,
+            };
+            yield conectar.query('update imagen_obra set ? where id_obra = ? ', [portadasEnEstadoCero, id_obra]);
+            //con la id elegimos la imagen de la columna portada que cambiara en 1
+            const datos_imagenes_evento = {
+                portada: 1,
+            };
+            yield conectar.query('update imagen_obra set ? where id_io = ?', [datos_imagenes_evento, id_io]);
+            res.json('Se estableció portada!');
+        });
+    }
 }
 exports.obraController = obraController;

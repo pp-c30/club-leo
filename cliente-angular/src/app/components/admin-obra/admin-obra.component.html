@@ -1,9 +1,9 @@
 <div class="row">
 
-    <div class="col-lg-4">
+    <div class="col-md-3">
         <div class="card">
             <div class="card-header">
-                Formulario de cargaa
+                Formulario de carga
             </div>
 
             <div class="card-body">
@@ -67,14 +67,14 @@
         </div>
     </div>
 
-    <div class="col-lg-8">
+    <div class="col-lg-9">
         <div class="card">
             <div class="card-header">
                 Grilla de obras
             </div>
 
-            <div  class="card body">
-                <div id="lol">
+            <div class="card body">
+                <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
                         <tr>
@@ -91,17 +91,17 @@
                     <tbody>
                         <tr *ngFor="let fila of obras">
                             <td>{{fila.id_obra}}</td>
-                            <td>{{fila.titulo}}</td>
-                          <div id="imagen"><td>{{fila.descripcion}}</td></div>
+                            <td><div id="hola">{{fila.titulo}}</div></td>
+                          <td><div id="hola">{{fila.descripcion}}</div></td>
                             <td>{{fila.categoria}}</td>
-                          <div id="imagen"><td>{{fila.imagen}}</td></div>
+                          <td><div id="hola">{{fila.imagen}}</div></td>
                             <td>{{fila.fecha_obra}}</td>
                             <td>{{fila.tipo}}</td>
                             <td>
                                 <div class="btn-group btn-group-sm">
                                     <button (click)="detalleObra(fila.id_obra)" class="btn btn-primary">Ver mas</button>
                                     <button (click)="eliminarObra(fila.id_obra)" class="btn btn-danger">Eliminar</button>
-                                    <button (click)="editarObra(fila)" class="btn btn-primary">Editar</button>
+                                    <button (click)="editarObra(fila)" class="btn btn-secondary">Editar</button>
                                 </div>
                             </td>
                         </tr>

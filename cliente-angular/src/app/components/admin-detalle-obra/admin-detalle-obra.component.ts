@@ -18,6 +18,7 @@ export class AdminDetalleObraComponent implements OnInit {
   archivos:FileList;
   imagenes_leidas = [];
 
+
   constructor(private spinner:NgxSpinnerService, private fb:FormBuilder ,private activatedRoute:ActivatedRoute, private serviceObra:ObraService) 
   {
     this.formDetalleObra = this.fb.group({
@@ -93,6 +94,16 @@ export class AdminDetalleObraComponent implements OnInit {
         }
       );
     }
+  }
+
+  establecerPortada(id_io:number, id_obra:number)
+  {
+    this.serviceObra.assingPortada(id_io, id_obra).subscribe(
+      resultado => {
+        this.listarImagenesObra(this.id_obra);
+
+      }
+    );
   }
   
 

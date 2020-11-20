@@ -163,4 +163,27 @@ export class obraController
 
     }
 
+    public async establecerPortada(req:Request, res:Response)
+    {
+        let id_io = req.params.id_io;
+        let id_obra = req.params.id_obra;
+        const conectar = await conexion();
+
+        //primero se pone todas las imagenes en la columna portada en cero
+        const portadasEnEstadoCero = {
+            portada:0,
+        }
+
+        await conectar.query('update imagen_obra set ? where id_obra = ? ',[portadasEnEstadoCero,id_obra]);
+
+        //con la id elegimos la imagen de la columna portada que cambiara en 1
+        const datos_imagenes_evento = {
+            portada:1,
+        }
+        
+        await conectar.query('update imagen_obra set ? where id_io = ?',[datos_imagenes_evento,id_io]);
+        res.json('Se estableció portada!');
+    }
+
+
 }

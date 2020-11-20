@@ -61,4 +61,10 @@ export class ObraService {
     let id_obra = datosObra.id_obra
     return this.http.put('http://localhost:3000/obras/'+id_obra,datosObra);
   }
+
+  //metodo encargado de editar un registro y poner la portada en estado 0
+  assingPortada(id_io:number,id_obra:number)
+  {
+    return this.http.get('http://localhost:3000/obra-portada/'+id_io+'/'+id_obra);
+  }
 }
