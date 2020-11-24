@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DonacionesService } from "../../services/donaciones.service";
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-donaciones',
@@ -9,8 +10,18 @@ import { DonacionesService } from "../../services/donaciones.service";
 export class DonacionesComponent implements OnInit {
 
   listDonaciones = [];
-  constructor(private donacioneServ:DonacionesService) { 
+
+  formDonacion: FormGroup;
+
+  constructor(private donacioneServ:DonacionesService, private fb: FormBuilder) { 
     
+this.formDonacion = this.fb.group({
+
+  donacion:[''],
+  descripcion:[''],
+  telefono:[''],
+})
+
   }
 
   ngOnInit(): void {
@@ -24,4 +35,16 @@ export class DonacionesComponent implements OnInit {
      )
    
  }
+guardarDonacion(){
+  //console.log(this.formDonacion);
+  this.donacioneServ.saveDonacion(this.formDonacion.value).subscribe(
+    resultado =>{
+      console.log(resultado);
+      //se refresca la grilla
+      this.obtenerDonaciones();
+      this.formDonacion.reset();
+    },
+    error => console.log(error)
+  );
+}
 }
