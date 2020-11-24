@@ -14,11 +14,31 @@ table tr th
 
 #hola
 {
-  overflow: auto;
-  width: 70px;
+  overflow: hidden;
+  resize: both;
+  width: 60px;
   height: 40px;
   
 }
+#holaI
+{
+  overflow: hidden;
+  resize: both;
+  width: 46px;
+  height: 40px;
+  
+}
+
+#grilla
+{
+    overflow: auto;
+    height: 300px;
+
+}
+
+
+
+
 
 
 

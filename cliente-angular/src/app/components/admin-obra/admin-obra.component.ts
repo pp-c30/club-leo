@@ -5,6 +5,12 @@ import { FormBuilder, FormGroup, Validators} from "@angular/forms";
 import { IHtmlInputEvent } from "../../models/inputElement";
 import { NgxSpinnerService } from "ngx-spinner";
 import { Router } from "@angular/router";
+import { CategoriaobraService } from "../../services/categoriaobra.service";
+import { ICategoriaObra } from "../../models/categoriaobra";
+import { error } from 'protractor';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { ItipoObra } from 'src/app/models/tipoobra';
+import { TipoobraService } from "../../services/tipoobra.service";
 
 @Component({
   selector: 'app-admin-obra',
@@ -13,6 +19,56 @@ import { Router } from "@angular/router";
 })
 export class AdminObraComponent implements OnInit {
 
+
+
+  editorConfig: AngularEditorConfig = {
+    editable: true,
+      spellcheck: true,
+      height: 'auto',
+      minHeight: '0',
+      maxHeight: 'auto',
+      width: 'auto',
+      minWidth: '0',
+      translate: 'yes',
+      enableToolbar: true,
+      showToolbar: true,
+      placeholder: 'Enter text here...',
+      defaultParagraphSeparator: '',
+      defaultFontName: '',
+      defaultFontSize: '',
+      fonts: [
+        {class: 'arial', name: 'Arial'},
+        {class: 'times-new-roman', name: 'Times New Roman'},
+        {class: 'calibri', name: 'Calibri'},
+        {class: 'comic-sans-ms', name: 'Comic Sans MS'}
+      ],
+      customClasses: [
+      {
+        name: 'quote',
+        class: 'quote',
+      },
+      {
+        name: 'redText',
+        class: 'redText'
+      },
+      {
+        name: 'titleText',
+        class: 'titleText',
+        tag: 'h1',
+      },
+    ],
+    uploadUrl: 'v1/image',
+    uploadWithCredentials: false,
+    sanitize: true,
+    toolbarPosition: 'top',
+    toolbarHiddenButtons: [
+      ['italic'],
+      //['fontSize']
+    ]
+};
+
+
+
   obras:Iobra[] = [];
   formObra:FormGroup;
   //para almacenar varias imagenes
@@ -20,16 +76,20 @@ export class AdminObraComponent implements OnInit {
   //almacena las imagenes url
   imagenes_url = [];
 
+  lista_de_categorias:ICategoriaObra[] = [];
+
+  lista_de_tipo:ItipoObra[] = [];
+
   ocultar_boton_file:any = 'display:block'
 
-  constructor(private router:Router ,private spinner:NgxSpinnerService ,private fb:FormBuilder, private serviceObra:ObraService) { 
+  constructor(private serviceTipoobra:TipoobraService, private serviceCategoria:CategoriaobraService, private router:Router ,private spinner:NgxSpinnerService ,private fb:FormBuilder, private serviceObra:ObraService) { 
     this.formObra = this.fb.group({
       id_obra:[null],
-      titulo:['',[Validators.required]],
+      titulo:['',[Validators.required, Validators.minLength(4)]],
       descripcion:['',[Validators.required]],
-      categoria:['',[Validators.required]],
-      tipo:['',[Validators.required]],
-      fecha_obra:['',[Validators.required]],
+      categoria:[null,[Validators.required]],
+      tipo:[null,[Validators.required]],
+      fecha_obra:[null,[Validators.required]],
       archivo:['']
     });
   }
@@ -37,6 +97,8 @@ export class AdminObraComponent implements OnInit {
   ngOnInit(): void {
     //apenas inicie la app se ejecutara este metodo
     this.listaObras();
+    this.obtenerCategorias();
+    this.obtenerTipos();
   }
 
   listaObras()
@@ -143,8 +205,27 @@ export class AdminObraComponent implements OnInit {
       categoria:'',
       tipo:'',
       fecha_obra:'',
-      archivo:''
+      archivo:'',
     });
+  }
 
+  obtenerCategorias()
+  {
+    this.serviceCategoria.getCategoriaObra().subscribe(
+      resultado => {
+        this.lista_de_categorias = resultado;
+      },
+      error => console.log(error)
+    );
+  }
+
+  obtenerTipos()
+  {
+    this.serviceTipoobra.getTipoobra().subscribe(
+      resultado => {
+        this.lista_de_tipo = resultado;
+      },
+      error => console.log(error)
+    );
   }
 }

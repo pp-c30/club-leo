@@ -9,7 +9,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CategoriaobraController = void 0;
 const database_1 = require("../database");
 class CategoriaobraController {
     //listar categorias 
@@ -34,8 +33,13 @@ class CategoriaobraController {
         return __awaiter(this, void 0, void 0, function* () {
             const conectar = yield database_1.conexion();
             let codigo = req.params.id_codigo;
-            yield conectar.query("delete from categoria_obra where id_co = ?", [codigo]);
-            return res.json('La categoría fue eliminada exitosamente!');
+            try {
+                yield conectar.query("delete from categoria_obra where id_co = ?", [codigo]);
+                return res.json("La categoria fue eliminada exitosamente!");
+            }
+            catch (error) {
+                return res.json("No se pudo eliminar una obra que este siendo utilizada por una obra");
+            }
         });
     }
     //La actualización una categoria

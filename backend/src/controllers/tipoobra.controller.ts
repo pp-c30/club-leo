@@ -28,8 +28,14 @@ export class tipoobraController
     {
         const conectar = await conexion();
         let codigo = req.params.id_codigo;
+        try{
         await conectar.query("delete from tipo_obra where id_tipo = ?", [codigo]);
-        return res.json("el tipo de obra fue eliminado exitosamente");
+        return res.json("El tipo fue eliminadO exitosamente!");
+    
+        }catch (error) {
+         return res.json("No se pudo eliminar una Tipo de obra que este siendo utilizada por una obra");
+        }
+        
     }
 
     //La actualizacion de un tipo de obra
