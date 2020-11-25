@@ -26,9 +26,13 @@ export class CategoriaobraController
     {
         const conectar = await conexion();
         let codigo = req.params.id_codigo;
+        try{
         await conectar.query("delete from categoria_obra where id_co = ?", [codigo]);
-        return res.json('La categoría fue eliminada exitosamente!')
+        return res.json("La categoria fue eliminada exitosamente!");
 
+        }catch (error) {
+            return res.json("No se pudo eliminar una obra que este siendo utilizada por una obra");
+        }
     }
 
     //La actualización una categoria

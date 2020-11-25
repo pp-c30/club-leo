@@ -9,7 +9,7 @@ const obra_controller_1 = require("../controllers/obra.controller");
 const multer_1 = __importDefault(require("../libs/multer"));
 const ObraController = new obra_controller_1.obraController();
 const enrutadorObras = express_1.Router();
-enrutadorObras.route('/obra').get(ObraController.listarObra);
+enrutadorObras.route('/obras').get(ObraController.listarObra);
 //primero se ejecutara multer y luego el controller 
 enrutadorObras.route('/obra').post(multer_1.default.array('img_obra'), ObraController.guardarObra);
 enrutadorObras.route('/obra/:id_codigo').get(ObraController.obtenerObra);

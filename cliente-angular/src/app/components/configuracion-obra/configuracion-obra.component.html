@@ -1,0 +1,120 @@
+<div class="row">
+
+    <div class="col-lg-3">
+        <div class="card">
+            <div class="card-header">
+                Formulario de carga categoria
+            </div>
+            <div class="card-body">
+                <form [formGroup]="formCategoria" (ngSubmit)="guardarCategoria()" novalidate> 
+
+                    <input formControlName="id_co" type="hidden">
+
+                    <div class="form-group">
+                        <input [ngClass]="{'is-invalid':(formCategoria.get('descripcion')?.touched || formCategoria.get('descripcion')?.dirty) && formCategoria.get('descripcion')?.invalid}" formControlName="descripcion" placeholder="agragar la categoria" class="form-control" type="text">
+                        <div class="invalid-feedback">
+                            <span *ngIf="formCategoria.get('descripcion').hasError('required')">Campo requerido  </span>
+                            <span *ngIf="!formCategoria.get('descripcion').hasError('minLength')">Minimo 4 caracteres</span>
+                        </div>
+                    </div>
+
+                    <button [disabled]="formCategoria.invalid" class="btn btn-success">Guardar</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-lg-6">
+        
+        <div class="card">
+            <div class="card-header">
+                Grilla de categorias
+            </div>
+
+            <div id="grilla" class="card body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                         <th>id</th>
+                         <th>Categorias</th>
+                         <th>Operaciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let categoria of lista_de_categoria" >
+                            <td>{{categoria.id_co}}</td>
+                            <td>{{categoria.descripcion}}</td>
+                            <td>
+                            <div class="btn-group btn-group-sm">
+                                <button (click)="eliminarCategoria(categoria.id_co);" class="btn btn-danger">Eliminar</button>
+                                <button (click)="editarCategoria(categoria);" class="btn btn-primary">Editar</button>
+                            </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+<hr>
+<br>
+
+<div class="row">
+    <div class="col-lg-3">
+        <div class="card">
+            <div class="card-header">
+                Carga tipo de obra
+            </div>
+            <div class="card-body">
+                <form [formGroup]="formTipo" (ngSubmit)="guardarTipo()" novalidate>
+                    <input formControlName="id_tipo" type="hidden">
+                    <div class="form-group">
+                        <input [ngClass]="{'is-invalid':(formTipo.get('descripcion')?.touched || formTipo.get('descripcion')?.dirty) && formTipo.get('descripcion')?.invalid}"  formControlName="descripcion" placeholder="Agregar tipo" type="text" class="form-control">
+                        <div class="invalid-feedback">
+                            <span *ngIf="formTipo.get('descripcion').hasError('required')">Campo requerido  </span>
+                            <span *ngIf="!formTipo.get('descripcion').hasError('minLength')">Minimo 4 caracteres</span>
+                        </div>
+                    </div>
+                    <button [disabled]="formTipo.invalid" class="btn btn-success">Guardar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header">
+                Grilla de tipo de obra
+            </div>
+            <div id="grilla" class="card body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Id tipo</th>
+                            <th>Descripción</th>
+                            <th>Operaciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let tipo of lista_de_tipo">
+                            <td>{{tipo.id_tipo}}</td>
+                            <td>{{tipo.descripcion}}</td>
+                            <td>
+                                <div class="btn-group btn-group-sm">
+                                    <button (click)="eliminarTipo(tipo.id_tipo);" class="btn btn-danger">Eliminar</button>
+                                    <button (click)="editarTipo(tipo);" class="btn btn-primary">Editar</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

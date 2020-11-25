@@ -16,7 +16,7 @@ export class ObraService {
     fd.append('titulo',datosObra.titulo);
     fd.append('descripcion',datosObra.descripcion);
     fd.append('categoria',datosObra.categoria);
-    fd.append('fecha_obra',datosObra.fecha_obra);
+    fd.append('fecha_obra',String(datosObra.fecha_obra.year+'-'+datosObra.fecha_obra.month+'-'+datosObra.fecha_obra.day));
     fd.append('tipo',datosObra.tipo);
 
     for (let i = 0; i < files.length; i++) {
@@ -29,7 +29,7 @@ export class ObraService {
 
   getObras()
   {
-    return this.http.get<Iobra[]>('http://localhost:3000/obra');
+    return this.http.get<Iobra[]>('http://localhost:3000/obras');
   }
 
   getImagesObras(id_obra:number)
@@ -37,6 +37,7 @@ export class ObraService {
     return this.http.get<IobraDetalle[]>('http://localhost:3000/obra-imagen/'+id_obra);
   }
 
+  //agregar mas imagenes en detalle obra
   addImagesObras(id_obra:number, files:FileList)
   {
     const fd = new FormData();
@@ -67,4 +68,6 @@ export class ObraService {
   {
     return this.http.get('http://localhost:3000/obra-portada/'+id_io+'/'+id_obra);
   }
+
+
 }

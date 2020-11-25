@@ -5,7 +5,7 @@ export interface Obra
     descripcion:string;
     categoria:string;
     imagen?:string;
-    fecha_obra:string;
+    fecha_obra:any;
     tipo:number;
 
 }

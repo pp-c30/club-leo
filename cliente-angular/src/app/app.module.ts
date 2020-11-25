@@ -11,6 +11,13 @@ import { ReactiveFormsModule} from "@angular/forms";
 import { AdminDetalleObraComponent } from './components/admin-detalle-obra/admin-detalle-obra.component';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { InicioComponent } from './components/inicio/inicio.component';
+import { ObrasComponent } from './components/obras/obras.component';
+import { ObrasDetalleComponent } from './components/obras-detalle/obras-detalle.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AngularEditorModule } from '@kolkov/angular-editor';
+import { ConfiguracionObraComponent } from './components/configuracion-obra/configuracion-obra.component';
+
+
 
 @NgModule({
   declarations: [
@@ -18,7 +25,10 @@ import { InicioComponent } from './components/inicio/inicio.component';
     MenuComponent,
     AdminObraComponent,
     AdminDetalleObraComponent,
-    InicioComponent
+    InicioComponent,
+    ObrasComponent,
+    ObrasDetalleComponent,
+    ConfiguracionObraComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,7 +36,9 @@ import { InicioComponent } from './components/inicio/inicio.component';
     HttpClientModule,
     ReactiveFormsModule,
     NgxSpinnerModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgbModule,
+    AngularEditorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

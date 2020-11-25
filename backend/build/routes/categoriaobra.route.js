@@ -11,6 +11,5 @@ enrutadorCategoriaobra.route('/categoriaobra').get(categoriaobraController.lista
 enrutadorCategoriaobra.route('/categoriaobra').post(categoriaobraController.guardarCategoriaobra);
 enrutadorCategoriaobra.route('/categoriaobra/:id_codigo').delete(categoriaobraController.eliminarCategoriaobra);
 enrutadorCategoriaobra.route('/categoriaobra/:id_codigo').put(categoriaobraController.actualizarCategoriaobra);
-enrutadorCategoriaobra.route('/categoriaobra/:id_codigo').get(categoriaobraController.obtenerUnacategoriaobra);
 //exportamos las rutas
 exports.default = enrutadorCategoriaobra;

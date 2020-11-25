@@ -9,7 +9,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.tipoobraController = void 0;
 const database_1 = require("../database");
 class tipoobraController {
     //Listar todos los tipos de obras
@@ -34,8 +33,13 @@ class tipoobraController {
         return __awaiter(this, void 0, void 0, function* () {
             const conectar = yield database_1.conexion();
             let codigo = req.params.id_codigo;
-            yield conectar.query("delete from tipo_obra where id_tipo = ?", [codigo]);
-            return res.json("el tipo de obra fue eliminado exitosamente");
+            try {
+                yield conectar.query("delete from tipo_obra where id_tipo = ?", [codigo]);
+                return res.json("El tipo fue eliminadO exitosamente!");
+            }
+            catch (error) {
+                return res.json("No se pudo eliminar una Tipo de obra que este siendo utilizada por una obra");
+            }
         });
     }
     //La actualizacion de un tipo de obra

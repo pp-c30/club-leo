@@ -12,7 +12,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.obraController = void 0;
 const database_1 = require("../database");
 const cloudinary_1 = __importDefault(require("cloudinary"));
 const fs_extra_1 = __importDefault(require("fs-extra"));
@@ -26,7 +25,7 @@ class obraController {
     listarObra(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const conectar = yield database_1.conexion();
-            let obra = yield conectar.query("select * from obra");
+            let obra = yield conectar.query('select *,(select descripcion from tipo_obra where id_tipo = o.tipo) as tipo, (select descripcion from categoria_obra where id_co = o.categoria) as categoria, DATE_FORMAT(fecha_obra, "%d/%m/%Y") as fecha_obra from obra o');
             return res.json(obra);
         });
     }
@@ -156,7 +155,9 @@ class obraController {
     }
     establecerPortada(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
+            //recibimos la id de la imagen que seleccionemos
             let id_io = req.params.id_io;
+            //reciviremos la id de la obra que se selecciono
             let id_obra = req.params.id_obra;
             const conectar = yield database_1.conexion();
             //primero se pone todas las imagenes en la columna portada en cero
@@ -169,6 +170,14 @@ class obraController {
                 portada: 1,
             };
             yield conectar.query('update imagen_obra set ? where id_io = ?', [datos_imagenes_evento, id_io]);
+            //de la imagen seleccionada nos traeremos todos los datos de esa imagen portada, seleccionda por su id
+            const unaFila = yield conectar.query('select * from imagen_obra where id_io = ?', [id_io]);
+            //creamos un objeto que guardara la url de los datos que nos traimos y se guardara en la culumna imagen
+            let datosObra = {
+                imagen: unaFila[0].imagen_url,
+            };
+            //luego traemos la url de la imagen seleccionada y la guardamos actualizando la columna imagen de la tabla obra
+            yield conectar.query('update obra set ? where id_obra = ?', [datosObra, id_obra]);
             res.json('Se estableció portada!');
         });
     }
