@@ -18,7 +18,7 @@ export class obraController
     public async listarObra(req:Request, res:Response)
     {
         const conectar = await conexion();
-        let obra = await conectar.query('select *,(select descripcion from tipo_obra where id_tipo = o.tipo) as tipo, (select descripcion from categoria_obra where id_co = o.categoria) as categoria, DATE_FORMAT(fecha_obra, "%d/%m/%Y") as fecha_obra from obra o');
+        let obra = await conectar.query('select *,(select descripcion from tipo_obra where id_tipo = o.tipo) as tipo, tipo as id_tipo, (select descripcion from categoria_obra where id_co = o.categoria) as categoria, categoria as id_categoria, DATE_FORMAT(fecha_obra, "%d/%m/%Y") as fecha_obra, DATE_FORMAT(fecha_obra, "%Y") as year, DATE_FORMAT(fecha_obra, "%m") as month, DATE_FORMAT(fecha_obra, "%d") as day from obra o');
         return res.json(obra);
     }
 

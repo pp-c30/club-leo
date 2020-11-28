@@ -1,6 +1,6 @@
-#grilla
+#hola
 {
-    overflow: auto;
-    height: 160px;
-
+  overflow: hidden;
+  resize: both;
+  width: 80px;
 }

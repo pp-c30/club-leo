@@ -12,6 +12,7 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { ItipoObra } from 'src/app/models/tipoobra';
 import { TipoobraService } from "../../services/tipoobra.service";
 
+
 @Component({
   selector: 'app-admin-obra',
   templateUrl: './admin-obra.component.html',
@@ -80,7 +81,11 @@ export class AdminObraComponent implements OnInit {
 
   lista_de_tipo:ItipoObra[] = [];
 
-  ocultar_boton_file:any = 'display:block'
+  ocultar_boton_file:any = 'display:block';
+
+  buscarObra:any ="";
+
+  p:number = 1;
 
   constructor(private serviceTipoobra:TipoobraService, private serviceCategoria:CategoriaobraService, private router:Router ,private spinner:NgxSpinnerService ,private fb:FormBuilder, private serviceObra:ObraService) { 
     this.formObra = this.fb.group({
@@ -188,9 +193,9 @@ export class AdminObraComponent implements OnInit {
       id_obra:datosObra.id_obra,
       titulo:datosObra.titulo,
       descripcion:datosObra.descripcion,
-      categoria:datosObra.categoria,
-      tipo:datosObra.tipo,
-      fecha_obra:datosObra.fecha_obra,
+      categoria:datosObra.id_categoria,
+      tipo:datosObra.id_tipo,
+      fecha_obra:{year:Number(datosObra.year),month:Number(datosObra.month),day:Number(datosObra.day)},
       archivo:''
     });
   }

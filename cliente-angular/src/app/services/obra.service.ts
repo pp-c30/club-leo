@@ -59,7 +59,9 @@ export class ObraService {
 
   updateObra(datosObra:Iobra)
   {
-    let id_obra = datosObra.id_obra
+    let id_obra = datosObra.id_obra;
+    datosObra.fecha_obra = String(datosObra.fecha_obra.year+'-'+datosObra.fecha_obra.month+'-'+datosObra.fecha_obra.day);
+
     return this.http.put('http://localhost:3000/obras/'+id_obra,datosObra);
   }
 

@@ -19,6 +19,12 @@ export class ConfiguracionObraComponent implements OnInit {
   formTipo:FormGroup;
   lista_de_tipo:ItipoObra[] = [];
 
+  buscarCategoria:any ="";
+  p:number = 1;
+
+  buscarTipo:any ="";
+  p2:number = 1;
+
 
   constructor(private serviceTipo:TipoobraService ,private serviceCategoria:CategoriaobraService, private fb:FormBuilder) {
     //formulario de categoria_obra
@@ -149,6 +155,20 @@ export class ConfiguracionObraComponent implements OnInit {
   editarTipo(unTipo:ItipoObra)
   {
     this.formTipo.setValue(unTipo);
+  }
+
+  vaciarFormCategoria()
+  {
+    this.formCategoria.setValue({
+      id_co:null,
+      descripcion:'',
+ 
+    });
+  }
+
+  vaciarFormTipo()
+  {
+    this.formTipo.reset();
   }
 
   

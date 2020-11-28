@@ -7,4 +7,10 @@ export interface Iobra
     imagen:string;
     fecha_obra:any;
     tipo:any;
+    id_categoria:number;
+    id_tipo:number;
+    year:number;
+    month:number;
+    day:number;
+    fecha_obra_formateada:any;
 }

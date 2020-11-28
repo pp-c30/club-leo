@@ -25,7 +25,7 @@ class obraController {
     listarObra(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const conectar = yield database_1.conexion();
-            let obra = yield conectar.query('select *,(select descripcion from tipo_obra where id_tipo = o.tipo) as tipo, (select descripcion from categoria_obra where id_co = o.categoria) as categoria, DATE_FORMAT(fecha_obra, "%d/%m/%Y") as fecha_obra from obra o');
+            let obra = yield conectar.query('select *,(select descripcion from tipo_obra where id_tipo = o.tipo) as tipo, tipo as id_tipo, (select descripcion from categoria_obra where id_co = o.categoria) as categoria, categoria as id_categoria, DATE_FORMAT(fecha_obra, "%d/%m/%Y") as fecha_obra, DATE_FORMAT(fecha_obra, "%Y") as year, DATE_FORMAT(fecha_obra, "%m") as month, DATE_FORMAT(fecha_obra, "%d") as day from obra o');
             return res.json(obra);
         });
     }

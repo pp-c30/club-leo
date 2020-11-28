@@ -19,6 +19,7 @@
                     </div>
 
                     <button [disabled]="formCategoria.invalid" class="btn btn-success">Guardar</button>
+                    <button (click)="vaciarFormCategoria();" class="btn btn-primary" type="button">Vaciar</button>
 
                 </form>
             </div>
@@ -26,7 +27,15 @@
     </div>
 
 
-    <div class="col-lg-6">
+    <div class="col-lg-8">
+
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="form-group">
+                    <input placeholder="Ingrese criterio de búsqueda" [(ngModel)]="buscarCategoria" class="form-control" type="text">
+                </div>
+            </div>
+        </div>
         
         <div class="card">
             <div class="card-header">
@@ -43,9 +52,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let categoria of lista_de_categoria" >
+                        <tr *ngFor="let categoria of lista_de_categoria | filter:buscarCategoria | paginate:{itemsPerPage:3, currentPage:p}" >
                             <td>{{categoria.id_co}}</td>
-                            <td>{{categoria.descripcion}}</td>
+                            <td><div id="hola">{{categoria.descripcion}}</div></td>
                             <td>
                             <div class="btn-group btn-group-sm">
                                 <button (click)="eliminarCategoria(categoria.id_co);" class="btn btn-danger">Eliminar</button>
@@ -55,6 +64,13 @@
                         </tr>
                     </tbody>
                 </table>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -81,12 +97,22 @@
                         </div>
                     </div>
                     <button [disabled]="formTipo.invalid" class="btn btn-success">Guardar</button>
+                    <button (click)="vaciarFormTipo();" class="btn btn-primary" type="button">Vaciar</button>
                 </form>
             </div>
         </div>
     </div>
 
-    <div class="col-lg-6">
+    <div class="col-lg-8">
+
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="form-group">
+                    <input placeholder="Ingrese criterio de búsqueda" [(ngModel)]="buscarTipo" class="form-control" type="text">
+                </div>
+            </div>
+        </div>
+
         <div class="card">
             <div class="card-header">
                 Grilla de tipo de obra
@@ -95,15 +121,15 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>Id tipo</th>
+                            <th>Id</th>
                             <th>Descripción</th>
                             <th>Operaciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let tipo of lista_de_tipo">
+                        <tr *ngFor="let tipo of lista_de_tipo  | filter:buscarTipo | paginate:{itemsPerPage:3, currentPage:p2}">
                             <td>{{tipo.id_tipo}}</td>
-                            <td>{{tipo.descripcion}}</td>
+                            <td><div id="hola">{{tipo.descripcion}}</div></td>
                             <td>
                                 <div class="btn-group btn-group-sm">
                                     <button (click)="eliminarTipo(tipo.id_tipo);" class="btn btn-danger">Eliminar</button>
@@ -113,6 +139,13 @@
                         </tr>
                     </tbody>
                 </table>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <pagination-controls (pageChange)="p2 = $event"></pagination-controls>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
