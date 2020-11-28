@@ -13,6 +13,10 @@ export class DonacionesService {
   getDonaciones(){
    return this.http.get<IDonaciones[]>('http://localhost:81/donaciones');
   }
-  
+
+
+  saveDonacion(unaDonacion:IDonaciones){
+   return this.http.post('http://localhost:81/donaciones',unaDonacion);
+  }
 
 }
