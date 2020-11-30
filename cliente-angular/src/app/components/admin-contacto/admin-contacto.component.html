@@ -1,0 +1,89 @@
+<div class="row">
+    <div class="col-lg-4">
+        <div class="card">
+            <div class="card-header">
+                Carga de contacto
+            </div>
+            <div class="card-body">
+                <form [formGroup]="formContacto" (ngSubmit)="guardarContacto();" novalidate>
+                    <input formControlName="id_contacto" type="hidden">
+                    <div class="form-group">
+                        <input [ngClass]="{'is-invalid':(formContacto.get('red_social')?.touched || formContacto.get('red_social')?.dirty) && formContacto.get('red_social')?.invalid}" formControlName="red_social" placeholder="Agregar nombre de la red social" type="text" class="form-control">
+                        <div class="invalid-feedback">
+                            <span *ngIf="formContacto.get('red_social').hasError('required')">campo requerido  </span>
+                            <span *ngIf="!formContacto.get('red_social').hasError('minLength')">Minimo 4 caracteres</span>
+                        </div>
+                    </div>
+            
+
+                    <div class="form-group">
+                        <input [ngClass]="{'is-invalid':(formContacto.get('url')?.touched || formContacto.get('url')?.dirty) && formContacto.get('url')?.invalid}" formControlName="url" placeholder="Agregar la URL de la red social" type="text" class="form-control">
+                        <div class="invalid-feedback">
+                            <span *ngIf="formContacto.get('url').hasError('required')">campo requerido  </span>
+                            <span *ngIf="!formContacto.get('url').hasError('minLength')">Minimo 4 caracteres</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button [disabled]="formContacto.invalid" class="btn btn-success">Guardar</button>
+                        <button (click)="vaciarFormContacto();" class="btn btn-primary">Vaciar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-8">
+
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="form-group">
+                    <input placeholder="Ingrese criterio de búsqueda" [(ngModel)]="buscarContacto" class="form-control" type="text">
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="table-responsive">
+                <div class="card-header">
+                    Grilla de Contactos
+                </div>
+                <div class="card body">
+                    <div class="card">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Nombre</th>
+                                        <th>Url</th>
+                                        <th>Operaciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let fila of lista_contacto | filter:buscarContacto | paginate:{itemsPerPage:4, currentPage:p}">
+                                        <td>{{fila.id_contacto}}</td>
+                                        <td><div id="hola">{{fila.red_social}}</div></td>
+                                        <td><div id="hola">{{fila.url}}</div></td>
+                                        <td>
+                                            <div class="btn-group btn-group-sm">
+                                                <button (click)="eliminarContacto(fila.id_contacto);" class="btn btn-danger">Eliminar</button>
+                                                <button (click)="editarContacto(fila);" class="btn btn-primary">Editar</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-5">
+                    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

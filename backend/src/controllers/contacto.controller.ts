@@ -1,9 +1,9 @@
 import { conexion } from "../database";
 import { Request, Response } from "express";
-import { Contacto } from "../models/contacto";
+import { IContacto } from "../models/contacto";
 
 
-export class contactoController
+export class ContactoController
 {
     //Listar todos los contactos
     public async listarContactos(req:Request, res:Response)
@@ -18,7 +18,7 @@ export class contactoController
     public async guardarContacto(req:Request, res:Response)
     {
         const conectar = await conexion();
-        let Contacto:Contacto = req.body;
+        let Contacto:IContacto = req.body;
         await conectar.query("insert into contacto set ?", [Contacto]);
         return res.json("El contacto se guardo exitosamente");
     }

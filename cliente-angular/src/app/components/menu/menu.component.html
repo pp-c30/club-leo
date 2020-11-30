@@ -8,17 +8,25 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="inicio">Inicio</a>
       </li>
+
       <li class="nav-item">
         <a class="nav-link" routerLink="obras">Obras</a>
       </li>
+
+      <li class="nav-item">
+        <a class="nav-link" routerLink="contacto">Contacto</a>
+      </li>
+      
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Administración
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Admin obras</a>
+          <a class="dropdown-item" routerLink="admin-obra">Admin Obras</a>
+          <a class="dropdown-item" routerLink="admin-contacto">Admin Contactos</a>
         </div>
       </li>
+
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Configuración

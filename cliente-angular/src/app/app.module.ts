@@ -20,6 +20,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
 
 
 import { DonacionesComponent } from './components/donaciones/donaciones.component';
+import { AdminContactoComponent } from './components/admin-contacto/admin-contacto.component';
+import { ContactoComponent } from './components/contacto/contacto.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,10 @@ import { DonacionesComponent } from './components/donaciones/donaciones.componen
     ObrasComponent,
     ObrasDetalleComponent,
     ConfiguracionObraComponent,
-    DonacionesComponent
+    DonacionesComponent,
+    AdminContactoComponent,
+    ContactoComponent,
+
   ],
   imports: [
     BrowserModule,

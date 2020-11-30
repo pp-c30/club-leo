@@ -1,4 +1,4 @@
-export interface Contacto
+export interface IContacto
 {
     id_contacto:number;
     red_social:string;

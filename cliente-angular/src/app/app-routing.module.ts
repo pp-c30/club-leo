@@ -6,6 +6,9 @@ import { InicioComponent } from './components/inicio/inicio.component';
 import { ObrasComponent } from './components/obras/obras.component';
 import { ObrasDetalleComponent } from './components/obras-detalle/obras-detalle.component';
 import { ConfiguracionObraComponent } from './components/configuracion-obra/configuracion-obra.component';
+import { AdminContactoComponent } from './components/admin-contacto/admin-contacto.component';
+import { ContactoComponent } from './components/contacto/contacto.component';
+
 
 const routes: Routes = [
   {
@@ -27,7 +30,13 @@ const routes: Routes = [
     path:'configuracion-obra',component:ConfiguracionObraComponent
   },
   {
-    path:'**',redirectTo:'admin-obra', pathMatch:'full'
+    path:'admin-contacto',component:AdminContactoComponent
+  },
+  {
+    path:'contacto',component:ContactoComponent 
+  },
+  {
+    path:'**',redirectTo:'inicio', pathMatch:'full'
   },
 ];
 

@@ -112,7 +112,7 @@
                             <th>Acciones</th>
                         </tr>
                     </thead>
-                    <tbody id="grilla" >
+                    <tbody>
                         <tr *ngFor="let fila of obras | filter:buscarObra | paginate:{itemsPerPage:3, currentPage:p}">
                             <td>{{fila.id_obra}}</td>
                             <td><div id="hola">{{fila.titulo}}</div></td>

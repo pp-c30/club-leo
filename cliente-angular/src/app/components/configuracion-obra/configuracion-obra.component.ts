@@ -30,13 +30,13 @@ export class ConfiguracionObraComponent implements OnInit {
     //formulario de categoria_obra
     this.formCategoria = this.fb.group({
       id_co:[null],
-      descripcion:['',[Validators.required, Validators.minLength(4)]],
+      descripcion:['',[Validators.required, Validators.minLength(4)]]
     });
 
     //formulario de tipo_obra
     this.formTipo =  this.fb.group({
       id_tipo:[null],
-      descripcion:['', Validators.required, Validators.minLength[4]],
+      descripcion:['', [Validators.required, Validators.minLength(4)]],
     });
    }
 
