@@ -1,1 +1,18 @@
-<p>contacto works!</p>
+<h1 align="center">Nuestras redes sociales</h1>
+
+        <br><br>
+
+<div class="row">
+    <div class="col-xs-7">
+        <table class="table">
+            <tbody>
+                <tr *ngFor="let contacto of lista_de_contacto">
+                    <td>{{contacto.red_social}}</td>
+                    <td>{{contacto.url}}</td>    
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>        
+
+    
