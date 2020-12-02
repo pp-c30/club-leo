@@ -56,7 +56,7 @@ export class Server{
         this.app.use(enrutadorTipoObra);
         this.app.use(enrutadorCategoriaobra);
         //la app usara la ruta upload para que el navegador pueda leer la carpeta y las imagenes
-        this.app.use('/upload', express.static(path.resolve('uploads')));
+        this.app.use('/uploads', express.static(path.resolve('uploads')));
     }
 
     //Usaremos el formato json en nuestra app

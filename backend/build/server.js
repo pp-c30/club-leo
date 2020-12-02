@@ -49,7 +49,7 @@ class Server {
         this.app.use(tipoobra_route_1.default);
         this.app.use(categoriaobra_route_1.default);
         //la app usara la ruta upload para que el navegador pueda leer la carpeta y las imagenes
-        this.app.use('/upload', express_1.default.static(path_1.default.resolve('uploads')));
+        this.app.use('/uploads', express_1.default.static(path_1.default.resolve('uploads')));
     }
     //Usaremos el formato json en nuestra app
     //usaremos cors y morgan para utilizar dos servidores y hacer las solicitudes http

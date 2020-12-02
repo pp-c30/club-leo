@@ -12,7 +12,7 @@ export class ObrasDetalleComponent implements OnInit {
   id_obra:number;
   titulo:string;
   descripcion:string
-  cateoria:number;
+  categoria:number;
   fecha_obra:Date;
   tipo:number;
 
@@ -25,7 +25,7 @@ export class ObrasDetalleComponent implements OnInit {
         this.id_obra = params.id_obra;
         this.titulo = params.titulo;
         this.descripcion = params.descripcion;
-        this.cateoria = params.categoria;
+        this.categoria = params.categoria;
         this.fecha_obra = params.fecha_obra;
         this.tipo = params.tipo;
       }

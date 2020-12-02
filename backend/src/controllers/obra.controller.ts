@@ -200,5 +200,4 @@ export class obraController
         res.json('Se estableció portada!');
     }
 
-
 }
