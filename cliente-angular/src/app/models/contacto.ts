@@ -4,4 +4,5 @@ export interface Icontacto
     red_social:string;
     url:string;
     clase?:string;
+    id_clase:number;
 }

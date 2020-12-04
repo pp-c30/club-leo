@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Icontacto } from "../../models/contacto";
 import { ContactoService } from "../../services/contacto.service";
 
+
 @Component({
   selector: 'app-contacto',
   templateUrl: './contacto.component.html',
@@ -10,6 +11,8 @@ import { ContactoService } from "../../services/contacto.service";
 export class ContactoComponent implements OnInit {
 
   lista_de_contacto:Icontacto[] = [];
+  
+ 
 
   constructor(private serviceContacto:ContactoService) { }
 

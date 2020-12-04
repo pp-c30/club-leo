@@ -9,7 +9,7 @@ export class ContactoController
     public async listarContactos(req:Request, res:Response)
     {
         const conectar = await conexion();
-        let contacto = await conectar.query("select * from contacto");
+        let contacto = await conectar.query("select *, (select clase from clase_contacto where id_clase = c.clase) as clase, clase as id_clase from contacto c");
         return res.json(contacto);
     }
 
