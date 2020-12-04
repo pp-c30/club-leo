@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Icontacto } from "../../models/contacto";
 import { ContactoService } from "../../services/contacto.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Iclasecontacto } from "../../models/clasecontacto";
+import { ClasecontactoService } from "../../services/clasecontacto.service";
 
 
 @Component({
@@ -18,16 +20,20 @@ export class AdminContactoComponent implements OnInit {
 
   p:number = 1;
 
-  constructor(private fb:FormBuilder, private serviceContacto:ContactoService){
+  lista_de_clasecontacto:Iclasecontacto[] = [];
+
+  constructor(private serviceClasecontacto:ClasecontactoService, private fb:FormBuilder, private serviceContacto:ContactoService){
     this.formContacto = this.fb.group({
       id_contacto:[null],
-      red_social:['', [Validators.required, Validators.minLength(4)]],
-      url:['', [Validators.required, Validators.minLength(4)]]
+      red_social:[''],
+      url:['', [Validators.required, Validators.minLength(4)]],
+      clase:[null]
     });
   }
 
   ngOnInit(): void {
     this.obtenerContacto();
+    this.obtenerClasecontacto();
   }
 
 
@@ -66,7 +72,12 @@ export class AdminContactoComponent implements OnInit {
 
   editarContacto(contacto:Icontacto)
   {
-    this.formContacto.setValue(contacto);
+    this.formContacto.setValue({
+      id_contacto:contacto.id_contacto,
+      red_social:contacto.red_social,
+      url:contacto.url,
+      clase:contacto.id_clase
+    });
   }
 
   vaciarFormContacto()
@@ -85,6 +96,16 @@ export class AdminContactoComponent implements OnInit {
       );
     }
 
+  }
+
+  obtenerClasecontacto()
+  {
+    this.serviceClasecontacto.getClasecontacto().subscribe(
+      respuesta => {
+        this.lista_de_clasecontacto = respuesta;
+      },
+      error => console.log(error)
+    );
   }
 
 }

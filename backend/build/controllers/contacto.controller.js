@@ -15,7 +15,7 @@ class ContactoController {
     listarContactos(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const conectar = yield database_1.conexion();
-            let contacto = yield conectar.query("select * from contacto");
+            let contacto = yield conectar.query("select *, (select clase from clase_contacto where id_clase = c.clase) as clase, clase as id_clase from contacto c");
             return res.json(contacto);
         });
     }
