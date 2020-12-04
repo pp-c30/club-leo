@@ -5,21 +5,31 @@
        <table class="table table-striped">
            <thead>
                <tr>
+                <th>Id</th>
                 <th>Titulo</th>
                 <th>Descripcion</th>
                 <th>Telefono</th>
                 <th>Correo</th>
                 <th>Categoria</th>
+                <th>Operaciones</th>
                </tr>
            </thead>
            
            <tbody>
                <tr *ngFor="let donacion of listDonaciones">
+                <td>{{donacion.id_donacion</td>
                 <td>{{donacion.titulo}}</td>
                 <td>{{donacion.descripcion}}</td>
                 <td>{{donacion.telefono}}</td>
                 <td>{{donacion.correo}}</td>
                 <td>{{donacion.categoria}}</td>
+                <td>
+                    <div class="btn-group btn-group-sm">
+                        <button [click]="eliminarDonacion (donacion.id_donacion);" class='btn btn-danger'>Eliminar</button>
+                        <button [click]="editarDonacion(donacion)" class='btn btn-primary'>Editar</button>
+
+                </div>
+                </td>
                </tr>
            </tbody>
        </table>
@@ -31,6 +41,7 @@
         <div class='card'>
             <div class="card-header">Formulario de donaciones</div>
             <div class="card-body">
+                <input formControlName="id_donacion" type="hidden">
                 <form [formGroup]="formDonacion" (ngSubnit)="guardarDonacion">
                     <div class="form-group">
                         <input formControlName="donacion" placeholder="ingrese donacion" type="text" class="form-control">

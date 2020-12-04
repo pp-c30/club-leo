@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DonacionesService } from "../../services/donaciones.service";
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { IDonaciones } from 'src/app/models/donaciones';
 
 @Component({
   selector: 'app-donaciones',
@@ -16,7 +17,7 @@ export class DonacionesComponent implements OnInit {
   constructor(private donacioneServ:DonacionesService, private fb: FormBuilder) { 
     
 this.formDonacion = this.fb.group({
-
+  id_donacion: [null],
   donacion:[''],
   descripcion:[''],
   telefono:[''],
@@ -36,15 +37,51 @@ this.formDonacion = this.fb.group({
    
  }
 guardarDonacion(){
-  //console.log(this.formDonacion);
-  this.donacioneServ.saveDonacion(this.formDonacion.value).subscribe(
-    resultado =>{
-      console.log(resultado);
-      //se refresca la grilla
+  
+  if(this.formDonacion.value.id_donacion)
+  {
+    //se actualiza
+    this.donacioneServ.updateDonacion(this.formDonacion.value).subscribe(
+      respuesta => {
+        console.log(respuesta);
+        this.obtenerDonaciones();
+        this.formDonacion.reset();
+      },
+      error => console.log(error)
+    )
+
+
+  }else{
+    this.donacioneServ.saveDonacion(this.formDonacion.value).subscribe(
+      resultado =>{
+        console.log(resultado);
+        //se refresca la grilla
+        this.obtenerDonaciones();
+        this.formDonacion.reset();
+      },
+      error => console.log(error)
+    );
+  }
+}
+
+editarDonacion(donacion:IDonaciones)
+  {
+    this.formDonacion.setValue(donacion);
+  }
+
+  eliminarDonacion(id:number)
+  {
+if(confirm('Esta seguro que desea ejecutar esta accion?')){
+  this.donacioneServ.deleteDonacion(id).subscribe(
+    respuesta => {
+      console.log(respuesta);
       this.obtenerDonaciones();
-      this.formDonacion.reset();
+      
     },
     error => console.log(error)
   );
-}
+  }
+
+    
+  }
 }
