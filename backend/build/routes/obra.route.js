@@ -7,9 +7,10 @@ const express_1 = require("express");
 const obra_controller_1 = require("../controllers/obra.controller");
 //se importa la libreria con la nueva configuracion
 const multer_1 = __importDefault(require("../libs/multer"));
+const verificartoken_1 = require("../libs/verificartoken");
 const ObraController = new obra_controller_1.obraController();
 const enrutadorObras = express_1.Router();
-enrutadorObras.route('/obras').get(ObraController.listarObra);
+enrutadorObras.route('/obras').get(verificartoken_1.validarToken, ObraController.listarObra);
 //primero se ejecutara multer y luego el controller 
 enrutadorObras.route('/obra').post(multer_1.default.array('img_obra'), ObraController.guardarObra);
 enrutadorObras.route('/obra/:id_codigo').get(ObraController.obtenerObra);

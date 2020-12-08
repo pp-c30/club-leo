@@ -12,6 +12,7 @@ import enrutadorCategoriadonacion from "./routes/categoriadonacion.route";
 import enrutadorTipoObra from "./routes/tipoobra.route";
 import  enrutadorCategoriaobra  from "./routes/categoriaobra.route";
 import  enrutadorClasecontacto  from "./routes/clasecontacto.route";
+import enrutadorAut from "./routes/autenticacion.route";
 
 //importamos cors y morgan
 import cors  from "cors";
@@ -57,6 +58,7 @@ export class Server{
         this.app.use(enrutadorTipoObra);
         this.app.use(enrutadorCategoriaobra);
         this.app.use(enrutadorClasecontacto);
+        this.app.use(enrutadorAut);
         //la app usara la ruta upload para que el navegador pueda leer la carpeta y las imagenes
         this.app.use('/uploads', express.static(path.resolve('uploads')));
     }
