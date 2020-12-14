@@ -1,18 +1,15 @@
-.col-md-3
+.col-lg-8
 {
-    margin-left: auto;
-    margin-right: auto;
+   padding-left: 20px;
+   
 }
 
-.list-unstyled
+p
 {
-    margin-left: auto;
-    margin-right: auto;
+    overflow: hidden;
+    
 }
 
-.col-lg-4
-{
-    width: 50px;
-    margin-left: auto;
-    margin-right: auto;
-}
+
+  
+

@@ -94,6 +94,7 @@ export class ConfiguracionObraComponent implements OnInit {
       this.serviceCategoria.deleteCategoriaObra(id_co).subscribe(
         respuesta => {
           console.log(respuesta);
+          alert(respuesta);
           this.obtenerCategoria();
         },
         error => console.log(error)

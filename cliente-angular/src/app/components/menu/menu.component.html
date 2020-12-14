@@ -1,39 +1,73 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #7c0404;">
+  <div class="container-fluid">
     <a class="navbar-brand" href="#">
       <img src="../assets/leo.png" width="45" height="45" class="d-inline-block align-top" alt="" loading="lazy">
     Club Leones
     </a>
-    
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" routerLink="inicio">Inicio</a>
-      </li>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-      <li class="nav-item">
-        <a class="nav-link" routerLink="obras">Obras</a>
-      </li>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="inicio">Inicio</a>
+        </li>
 
-      <li class="nav-item">
-        <a class="nav-link" routerLink="contacto">Contacto</a>
-      </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="obras">Obras</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="contacto">Contacto</a>
+        </li>
       
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Administración
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" routerLink="admin-obra">Admin Obras</a>
-          <a class="dropdown-item" routerLink="admin-contacto">Admin Contactos</a>
-        </div>
-      </li>
+        <li *ngIf="serviceAut.verificarUsuarioLogueado();" class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Administración
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" routerLink="admin-obra">Admin Obras</a>
+            <a class="dropdown-item" routerLink="admin-contacto">Admin Contactos</a>
+          </div>
+        </li>
 
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Configuración
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" routerLink="configuracion-obra">configuracion de obras</a>
-        </div>
-      </li>
-    </ul>
+        <li *ngIf="serviceAut.verificarUsuarioLogueado();" class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Configuración
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" routerLink="configuracion-obra">configuracion de obras</a>
+          </div>
+        </li>
+      </ul>
+
+ 
+      <ng-container>
+
+        <ul class="navbar-nav ml-auto">
+          <li *ngIf="serviceAut.verificarUsuarioLogueado();" class="nav-item">
+            <a class="nav-link" routerLink="registro">Registrarse</a>
+          </li>
+          <li *ngIf="!serviceAut.verificarUsuarioLogueado(); else cierresesion" class="nav-item">
+            <a class="nav-link" routerLink="ingreso">Ingresar</a>
+          </li>
+        </ul>
+
+      </ng-container>
+
+      <ng-template #cierresesion >
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" style="cursor: pointer;" (click)="serviceAut.cerrarSesion();">Salir</a>
+          </li>
+        </ul>
+      </ng-template>
+
+    </div>
+  </div>
 </nav>
+
+

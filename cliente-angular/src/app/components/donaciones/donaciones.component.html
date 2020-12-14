@@ -25,8 +25,8 @@
                 <td>{{donacion.categoria}}</td>
                 <td>
                     <div class="btn-group btn-group-sm">
-                        <button [click]="eliminarDonacion (donacion.id_donacion);" class='btn btn-danger'>Eliminar</button>
-                        <button [click]="editarDonacion(donacion)" class='btn btn-primary'>Editar</button>
+                        <button (click)="eliminarDonacion (donacion.id_donacion);" class='btn btn-danger'>Eliminar</button>
+                        <button (click)="editarDonacion(donacion)" class='btn btn-primary'>Editar</button>
 
                 </div>
                 </td>
@@ -42,7 +42,7 @@
             <div class="card-header">Formulario de donaciones</div>
             <div class="card-body">
                 <input formControlName="id_donacion" type="hidden">
-                <form [formGroup]="formDonacion" (ngSubnit)="guardarDonacion">
+                <form [formGroup]="formDonacion" (ngSubmit)="guardarDonacion">
                     <div class="form-group">
                         <input formControlName="donacion" placeholder="ingrese donacion" type="text" class="form-control">
                     </div>

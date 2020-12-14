@@ -32,9 +32,14 @@ class CategoriagaleriaController {
     eliminarCategoriagaleria(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const conectar = yield database_1.conexion();
-            let codigo = req.params.id_codigo;
-            yield conectar.query("delete from categoria_galeria where id_cg = ?", [codigo]);
-            return res.json('La categoría fue eliminada exitosamente!');
+            try {
+                let codigo = req.params.id_codigo;
+                yield conectar.query("delete from categoria_galeria where id_cg = ?", [codigo]);
+                return res.json('La categoría fue eliminada exitosamente!');
+            }
+            catch (error) {
+                res.json('No se pudo eliminar una categoria en uso');
+            }
         });
     }
     //La actualización una categoria

@@ -44,14 +44,14 @@ export class Autenticacioncontroller
             //si la contraseña no existe 
             if(!correctPasword)
             {
-                res.json('Contraseña incorrecta!');
+                res.json('Contraseña incorrecta');
             }else{
                 //si existe crea un token para la id
                 const token:string = jwt.sign({_id:usuario[0].id_usuario}, process.env.TOKEN_SECRET || '12qwaszx',{
                     expiresIn:60*60*24
                 });
                 //se enviara el token en un res.header y los datos del usuario en un res.json para poder conformar un perfil del usuario
-                res.header('auth-token', token).json(usuario[0]);
+                res.json(token);
             }
         }
 

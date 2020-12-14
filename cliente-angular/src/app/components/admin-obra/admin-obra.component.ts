@@ -95,6 +95,7 @@ export class AdminObraComponent implements OnInit {
       categoria:[null,[Validators.required]],
       tipo:[null,[Validators.required]],
       fecha_obra:[null,[Validators.required]],
+      estado:[0],
       archivo:['']
     });
   }
@@ -195,6 +196,7 @@ export class AdminObraComponent implements OnInit {
       descripcion:datosObra.descripcion,
       categoria:datosObra.id_categoria,
       tipo:datosObra.id_tipo,
+      estado:datosObra.estado,
       fecha_obra:{year:Number(datosObra.year),month:Number(datosObra.month),day:Number(datosObra.day)},
       archivo:''
     });
@@ -209,8 +211,9 @@ export class AdminObraComponent implements OnInit {
       descripcion:'',
       categoria:'',
       tipo:'',
+      estado:'',
       fecha_obra:'',
-      archivo:'',
+      archivo:''
     });
   }
 

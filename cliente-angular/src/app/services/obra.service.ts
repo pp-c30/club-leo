@@ -18,6 +18,7 @@ export class ObraService {
     fd.append('categoria',datosObra.categoria);
     fd.append('fecha_obra',String(datosObra.fecha_obra.year+'-'+datosObra.fecha_obra.month+'-'+datosObra.fecha_obra.day));
     fd.append('tipo',datosObra.tipo);
+    fd.append('estado',String(datosObra.estado));
 
     for (let i = 0; i < files.length; i++) {
       

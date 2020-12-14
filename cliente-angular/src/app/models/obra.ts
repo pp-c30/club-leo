@@ -13,4 +13,5 @@ export interface Iobra
     month:number;
     day:number;
     fecha_obra_formateada:any;
+    estado:number;
 }

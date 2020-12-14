@@ -31,19 +31,19 @@
 
 
 <div class="row">
-    <div *ngFor="let obra of lista_de_obra" class="col-md-3">
-
-        <ul class="list-unstyled">
-            <li class="media">
-            <img style="width: 50%; height: 100px;" [src]="obra.imagen" class="img-thumbnail img-fluid mr-3" alt="...">
-            <div class="media-body">
-               <a style="cursor: pointer;" (click)="verMas(obra);"> <h5 class="mt-0 mb-1">{{obra.titulo}}</h5></a>
-            <p [innerHtml]="obra.descripcion" style="height:60px; line-height:20px;"></p>
-            </div>
-            </li>
-        </ul>
-    </div>
+  <ul class="col-lg-8 list-unstyled">
+    <li *ngFor="let obra of lista_de_obra;" class=" media">
+      <img style="width: 198px; height: 135px;" [src]="obra.imagen" class="img-thumbnail img-fluid mr-3" alt="...">
+      <div class="media-body">
+        <a style="cursor: pointer;" (click)="verMas(obra);"> <h5 class="mt-0 mb-1">{{obra.titulo}}</h5></a>
+      <p [innerHtml]="obra.descripcion" style="height:100px; line-height:20px;"></p>
+      <br><br><br>
+      </div>
+    </li>
+  </ul>
 </div>
+
+
 
 
 

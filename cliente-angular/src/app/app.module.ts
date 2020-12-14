@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './components/menu/menu.component';
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AdminObraComponent } from './components/admin-obra/admin-obra.component';
 import { ReactiveFormsModule, FormsModule} from "@angular/forms";
 import { AdminDetalleObraComponent } from './components/admin-detalle-obra/admin-detalle-obra.component';
@@ -22,6 +22,12 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { DonacionesComponent } from './components/donaciones/donaciones.component';
 import { AdminContactoComponent } from './components/admin-contacto/admin-contacto.component';
 import { ContactoComponent } from './components/contacto/contacto.component';
+import { RegistroComponent } from './components/registro/registro.component';
+import { IngresoComponent } from './components/ingreso/ingreso.component';
+
+import { AuthGuard } from "./auth.guard";
+
+import { TokenInterceptorService } from "./services/token-interceptor.service";
 
 @NgModule({
   declarations: [
@@ -36,6 +42,8 @@ import { ContactoComponent } from './components/contacto/contacto.component';
     DonacionesComponent,
     AdminContactoComponent,
     ContactoComponent,
+    RegistroComponent,
+    IngresoComponent,
 
   ],
   imports: [
@@ -51,7 +59,14 @@ import { ContactoComponent } from './components/contacto/contacto.component';
     FormsModule,
     NgxPaginationModule
   ],
-  providers: [],
+  providers: [
+    AuthGuard,
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:TokenInterceptorService,
+      multi:true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

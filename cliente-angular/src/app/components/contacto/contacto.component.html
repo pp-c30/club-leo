@@ -12,23 +12,19 @@
 <br>
      
 
-    <div class="row">
-        <div *ngFor="let contacto of lista_de_contacto" class="col-lg-3">
-         
-                        
-                  <a [href]="contacto.url"  [class]="contacto.clase" >{{contacto.red_social}}</a>
-                        
-           
-            <br> <br>
-        </div>
+<div class="row">
+    <div *ngFor="let contacto of lista_de_contacto" class="col-lg-3">            
+        <a [href]="contacto.url"  [class]="contacto.clase" >{{contacto.red_social}}</a>        
+        <br> <br>
+    </div>
 
-        <div class="col-lg-3">
-            <div id="whatsapp-icon" style=" bottom:10px; text-align:center; padding:3px">
-                <a href="https://api.whatsapp.com/send?phone=+5492995443221">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/240px-WhatsApp.svg.png" width="50" height="50">+2993223223</a>
-            </div>
+    <div class="col-lg-3">
+        <div id="whatsapp-icon" style=" bottom:10px; text-align:center; padding:3px">
+            <a href="https://api.whatsapp.com/send?phone=+5492995443221">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/240px-WhatsApp.svg.png" width="50" height="50">+2993223223</a>
         </div>
     </div>
+</div>
 
 
 
