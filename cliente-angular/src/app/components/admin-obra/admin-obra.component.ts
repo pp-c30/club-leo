@@ -109,7 +109,7 @@ export class AdminObraComponent implements OnInit {
 
   listaObras()
   {
-    this.serviceObra.getObras().subscribe(
+    this.serviceObra.getObrasAdmin().subscribe(
       resultado => {
         this.obras = resultado;
       }

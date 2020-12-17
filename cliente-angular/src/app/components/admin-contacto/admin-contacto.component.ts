@@ -39,7 +39,7 @@ export class AdminContactoComponent implements OnInit {
 
   obtenerContacto()
   {
-    this.serviceContacto.getContacto().subscribe(
+    this.serviceContacto.getContactoAdmin().subscribe(
       respuesta => {
         this.lista_contacto = respuesta
       },

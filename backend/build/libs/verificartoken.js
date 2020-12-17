@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 function validarToken(req, res, next) {
     //recive el token en header al iniciar secion
-    const token = req.header('auth-token');
+    const token = req.header('authorization');
     //si no existe el token
     if (!token) {
         res.json('Acesso denegado');

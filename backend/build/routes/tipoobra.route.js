@@ -2,9 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const tipoobra_controller_1 = require("../controllers/tipoobra.controller");
+const verificartoken_1 = require("../libs/verificartoken");
 const TipoObraController = new tipoobra_controller_1.tipoobraController();
 const enrutadorTipoObra = express_1.Router();
 enrutadorTipoObra.route('/tipoobra').get(TipoObraController.listarTipoObra);
+enrutadorTipoObra.route('/tipoobra-admin').get(verificartoken_1.validarToken, TipoObraController.listarTipoObra);
 enrutadorTipoObra.route('/tipoobra').post(TipoObraController.guardarTipoObra);
 enrutadorTipoObra.route('/tipoobra/:id_codigo').delete(TipoObraController.eliminarTipoObra);
 enrutadorTipoObra.route('/tipoobra/:id_codigo').put(TipoObraController.actualizarTipoObra);

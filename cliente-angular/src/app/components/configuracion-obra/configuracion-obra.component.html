@@ -1,3 +1,20 @@
+
+
+<div *ngIf="alerta == 'La categoria fue eliminada exitosamente!'; else loggedOut">
+    <div class="alert alert-success" role="alert" *ngIf="alerta">
+        {{alerta}}
+      </div>
+  </div>
+  
+  <ng-template #loggedOut>
+    <div class="alert alert-danger" role="alert" *ngIf="alerta">
+        {{alerta}}
+      </div>
+  </ng-template>
+
+
+
+
 <div class="row">
 
     <div class="col-lg-3">
@@ -80,6 +97,23 @@
 <hr>
 <br>
 
+
+<div *ngIf="alertaTipo == 'El tipo fue eliminado exitosamente!'; else loggedOutt">
+    <div class="alert alert-success" role="alert" *ngIf="alertaTipo">
+        {{alertaTipo}}
+      </div>
+  </div>
+  
+  <ng-template #loggedOutt>
+    <div class="alert alert-danger" role="alert" *ngIf="alertaTipo">
+        {{alertaTipo}}
+      </div>
+  </ng-template>
+
+
+
+
+
 <div class="row">
     <div class="col-lg-3">
         <div class="card">
@@ -150,4 +184,6 @@
         </div>
     </div>
 </div>
+
+
 

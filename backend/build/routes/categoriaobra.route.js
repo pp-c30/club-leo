@@ -8,6 +8,7 @@ const enrutadorCategoriaobra = express_1.Router();
 const categoriaobraController = new categoriaobra_controller_1.CategoriaobraController;
 //hacemos uso de las funciones de router en la variable enrutador
 enrutadorCategoriaobra.route('/categoriaobra').get(categoriaobraController.listarCategoriaobra);
+enrutadorCategoriaobra.route('/categoriaobra-admin').get(categoriaobraController.listarCategoriaobra);
 enrutadorCategoriaobra.route('/categoriaobra').post(categoriaobraController.guardarCategoriaobra);
 enrutadorCategoriaobra.route('/categoriaobra/:id_codigo').delete(categoriaobraController.eliminarCategoriaobra);
 enrutadorCategoriaobra.route('/categoriaobra/:id_codigo').put(categoriaobraController.actualizarCategoriaobra);

@@ -30,10 +30,10 @@ export class tipoobraController
         let codigo = req.params.id_codigo;
         try{
         await conectar.query("delete from tipo_obra where id_tipo = ?", [codigo]);
-        return res.json("El tipo fue eliminadO exitosamente!");
+        return res.json("El tipo fue eliminado exitosamente!");
     
         }catch (error) {
-         return res.json("No se pudo eliminar una Tipo de obra que este siendo utilizada por una obra");
+         return res.json("No se pudo eliminar un Tipo de obra que este siendo utilizada por una obra");
         }
         
     }

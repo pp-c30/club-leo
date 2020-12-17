@@ -1,12 +1,12 @@
-<h1 align="center">Obras</h1>
-
+<h1 align="center">Nuestras obras</h1>
+<br>
 <div class="row">
   <div *ngFor="let obras of lista_obras" class="col-lg-3">
     <div class="card" style="width: 16rem;">
         <img style="height: 190px;" [src]="obras.imagen" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">{{obras.titulo}}</h5>
-            <a class="btn btn-primary" (click)="getBotonMas(obras)">ver mas</a>
+            <a class="btn btn-primary btn-sm" (click)="getBotonMas(obras)">ver mas</a>
           </div>
     </div>
     <br>

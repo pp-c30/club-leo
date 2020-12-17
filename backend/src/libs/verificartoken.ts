@@ -4,7 +4,7 @@ import  jwt  from "jsonwebtoken";
 export function validarToken(req:Request, res:Response, next:NextFunction)
 {
     //recive el token en header al iniciar secion
-    const token:any = req.header('auth-token');
+    const token:any = req.header('authorization');
 
     //si no existe el token
     if(!token){

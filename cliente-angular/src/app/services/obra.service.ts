@@ -32,6 +32,10 @@ export class ObraService {
   {
     return this.http.get<Iobra[]>('http://localhost:3000/obras');
   }
+  getObrasAdmin()
+  {
+    return this.http.get<Iobra[]>('http://localhost:3000/obras-admin');
+  }
 
   getImagesObras(id_obra:number)
   {

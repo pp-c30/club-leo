@@ -2,9 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const contacto_controller_1 = require("../controllers/contacto.controller");
+const verificartoken_1 = require("../libs/verificartoken");
 const contactoController = new contacto_controller_1.ContactoController();
 const enrutadorContacto = express_1.Router();
 enrutadorContacto.route('/contacto').get(contactoController.listarContactos);
+enrutadorContacto.route('/contacto-admin').get(verificartoken_1.validarToken, contactoController.listarContactos);
 enrutadorContacto.route('/contacto').post(contactoController.guardarContacto);
 enrutadorContacto.route('/contacto/:id_codigo').delete(contactoController.eliminarContacto);
 enrutadorContacto.route('/contacto/:id_codigo').put(contactoController.actualizarContacto);

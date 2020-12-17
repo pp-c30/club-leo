@@ -5,3 +5,15 @@
     margin-left: auto;
     margin-right: auto;
 }
+
+@font-face{
+    font-family: 'mifuente';
+    src: url('src/assets/font/Quesha.ttf');
+
+}
+
+h1
+{
+    font-family: 'mifuente';
+    font-size: 46px;
+}

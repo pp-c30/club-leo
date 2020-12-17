@@ -15,6 +15,11 @@ export class CategoriaobraService {
     return this.http.get<ICategoriaObra[]>('http://localhost:3000/categoriaobra');
   }
 
+  getCategoriaObraAdmin()
+  {
+    return this.http.get<ICategoriaObra[]>('http://localhost:3000/categoriaobra-admin');
+  }
+
   saveCategoriaObra(unaCategoria:ICategoriaObra)
   {
     return this.http.post('http://localhost:3000/categoriaobra', unaCategoria);
