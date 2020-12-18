@@ -17,6 +17,9 @@ const categoriadonacion_route_1 = __importDefault(require("./routes/categoriadon
 const tipoobra_route_1 = __importDefault(require("./routes/tipoobra.route"));
 const categoriaobra_route_1 = __importDefault(require("./routes/categoriaobra.route"));
 const clasecontacto_route_1 = __importDefault(require("./routes/clasecontacto.route"));
+const autenticacion_route_1 = __importDefault(require("./routes/autenticacion.route"));
+const imagengaleria_route_1 = __importDefault(require("./routes/imagengaleria.route"));
+const galeria_route_1 = __importDefault(require("./routes/galeria.route"));
 //importamos cors y morgan
 const cors_1 = __importDefault(require("cors"));
 const morgan_1 = __importDefault(require("morgan"));
@@ -50,6 +53,9 @@ class Server {
         this.app.use(tipoobra_route_1.default);
         this.app.use(categoriaobra_route_1.default);
         this.app.use(clasecontacto_route_1.default);
+        this.app.use(autenticacion_route_1.default);
+        this.app.use(imagengaleria_route_1.default);
+        this.app.use(galeria_route_1.default);
         //la app usara la ruta upload para que el navegador pueda leer la carpeta y las imagenes
         this.app.use('/uploads', express_1.default.static(path_1.default.resolve('uploads')));
     }

@@ -8,14 +8,18 @@ import { ObrasDetalleComponent } from './components/obras-detalle/obras-detalle.
 import { ConfiguracionObraComponent } from './components/configuracion-obra/configuracion-obra.component';
 import { AdminContactoComponent } from './components/admin-contacto/admin-contacto.component';
 import { ContactoComponent } from './components/contacto/contacto.component';
+
 import { DonacionesComponent } from "./components/donaciones/donaciones.component";
+import { RegistroComponent } from './components/registro/registro.component';
+import { IngresoComponent } from './components/ingreso/ingreso.component';
+import { AuthGuard } from "./auth.guard";
 
 const routes: Routes = [
   {
     path:'inicio',component:InicioComponent
   },
   {
-    path:'admin-obra',component:AdminObraComponent
+    path:'admin-obra',component:AdminObraComponent,canActivate:[AuthGuard]
   },
   {
     path:'admin-detalle-obra/:id_obra',component:AdminDetalleObraComponent
@@ -34,6 +38,12 @@ const routes: Routes = [
   },
   {
     path:'contacto',component:ContactoComponent 
+  },
+  {
+    path:'registro',component:RegistroComponent
+  },
+  {
+    path:'ingreso',component:IngresoComponent
   },
   {
     path:'**',redirectTo:'inicio', pathMatch:'full'

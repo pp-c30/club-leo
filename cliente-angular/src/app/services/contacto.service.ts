@@ -14,6 +14,11 @@ export class ContactoService {
     return this.http.get<Icontacto[]>('http://localhost:3000/contacto');
   }
 
+  getContactoAdmin()
+  {
+    return this.http.get<Icontacto[]>('http://localhost:3000/contacto-admin');
+  }
+
   saveContacto(unContacto:Icontacto)
   {
     return this.http.post('http://localhost:3000/contacto', unContacto);

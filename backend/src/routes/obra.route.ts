@@ -3,11 +3,14 @@ import { obraController } from "../controllers/obra.controller";
 //se importa la libreria con la nueva configuracion
 import multer from "../libs/multer";
 
+import { validarToken } from "../libs/verificartoken";
+
 const ObraController = new obraController();
 const enrutadorObras = Router();
 
 
 enrutadorObras.route('/obras').get(ObraController.listarObra);
+enrutadorObras.route('/obras-admin').get(validarToken, ObraController.listarObra);
 //primero se ejecutara multer y luego el controller 
 enrutadorObras.route('/obra').post(multer.array('img_obra'),ObraController.guardarObra);
 

@@ -25,6 +25,9 @@ export class ConfiguracionObraComponent implements OnInit {
   buscarTipo:any ="";
   p2:number = 1;
 
+  alerta:any;
+  alertaTipo:any;
+
 
   constructor(private serviceTipo:TipoobraService ,private serviceCategoria:CategoriaobraService, private fb:FormBuilder) {
     //formulario de categoria_obra
@@ -47,7 +50,7 @@ export class ConfiguracionObraComponent implements OnInit {
 
   obtenerCategoria()
   {
-    this.serviceCategoria.getCategoriaObra().subscribe(
+    this.serviceCategoria.getCategoriaObraAdmin().subscribe(
       resultado => {
         this.lista_de_categoria = resultado;
       },
@@ -93,8 +96,9 @@ export class ConfiguracionObraComponent implements OnInit {
     {
       this.serviceCategoria.deleteCategoriaObra(id_co).subscribe(
         respuesta => {
-          console.log(respuesta);
+          this.alerta = respuesta;
           this.obtenerCategoria();
+          
         },
         error => console.log(error)
       );
@@ -103,7 +107,7 @@ export class ConfiguracionObraComponent implements OnInit {
 
   obtenerTipoobra()
   {
-    this.serviceTipo.getTipoobra().subscribe(
+    this.serviceTipo.getTipoobraAdmin().subscribe(
       respuesta => {
         this.lista_de_tipo = respuesta;
       },
@@ -145,6 +149,7 @@ export class ConfiguracionObraComponent implements OnInit {
       this.serviceTipo.deleteTipoobra(id_tipo).subscribe(
         respuesta => {
           console.log(respuesta);
+          this.alertaTipo = respuesta;
           this.obtenerTipoobra();
         },
         error => console.log(error)

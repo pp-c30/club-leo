@@ -33,6 +33,7 @@ export class obraController
         const c = req.body.categoria;
         const fecha = req.body.fecha_obra;
         const tipos = req.body.tipo;
+        const estados = Number(req.body.estado);
 
         
 
@@ -41,7 +42,8 @@ export class obraController
             descripcion:d,
             categoria:c,
             fecha_obra:fecha,
-            tipo:tipos
+            tipo:tipos,
+            estado:estados
         }
 
         const resultado = await conectar.query('insert into obra set ?',[unaObra]);
@@ -88,6 +90,7 @@ export class obraController
                 titulo:req.body.titulo,
                 descripcion:req.body.descripcion,
                 categoria:req.body.categoria,
+                estado:req.body.estado,
                 fecha_obra:req.body.fecha_obra,
                 tipo:req.body.tipo
             }

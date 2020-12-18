@@ -57,10 +57,15 @@
         <div class='card'>
             <div class="card-header">Formulario de donaciones</div>
             <div class="card-body">
+
                 
                 <form [formGroup]="formDonacion" (ngSubnit)="guardarDonacion()" novalidate>
 
                     <input formControlName="id_donacion" type="hidden">
+
+
+                <input formControlName="id_donacion" type="hidden">
+                <form [formGroup]="formDonacion" (ngSubmit)="guardarDonacion">
 
                     <div class="form-group">
                         <input [ngClass]="{'is-invalid':(formDonacion.get('donacion')?.touched|| formDonacion.get('donacion')?.dirty) && formDonacion.get('donacion')?.invalid}" formControlName= "donacion" placeholder="ingrese donacion" type="text" class="form-control">

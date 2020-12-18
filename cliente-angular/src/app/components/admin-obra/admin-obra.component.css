@@ -1,22 +1,9 @@
 
-table tr td{
-
-  text-align: center;
-
- 
-}
-
-
-table tr th
-{
-  text-align: center;
-}
-
 #hola
 {
   overflow: hidden;
   resize: both;
-  width: 60px;
+  width: 80px;
   height: 40px;
   
 }
@@ -24,10 +11,18 @@ table tr th
 {
   overflow: hidden;
   resize: both;
-  width: 46px;
+  width: 60px;
   height: 40px;
   
 }
+
+
+#botonmodal
+{
+  position: relative;
+  left: 20px;
+}
+
 
 
 

@@ -14,6 +14,11 @@ export class TipoobraService {
     return this.http.get<ItipoObra[]>('http://localhost:3000/tipoobra');
   }
 
+  getTipoobraAdmin()
+  {
+    return this.http.get<ItipoObra[]>('http://localhost:3000/tipoobra-admin');
+  }
+
   saveTipoobra(unTipo:ItipoObra)
   {
     return this.http.post('http://localhost:3000/tipoobra',unTipo);

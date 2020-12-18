@@ -25,9 +25,16 @@ export class CategoriagaleriaController
     public async eliminarCategoriagaleria(req:Request, res:Response)
     {
         const conectar = await conexion();
-        let codigo = req.params.id_codigo;
-        await conectar.query("delete from categoria_galeria where id_cg = ?", [codigo]);
-        return res.json('La categoría fue eliminada exitosamente!')
+        try {
+            let codigo = req.params.id_codigo;
+            await conectar.query("delete from categoria_galeria where id_cg = ?", [codigo]);
+            return res.json('La categoría fue eliminada exitosamente!');
+            
+        } catch (error) {
+            res.json('No se pudo eliminar una categoria en uso');
+        }
+       
+ 
 
     }
 
