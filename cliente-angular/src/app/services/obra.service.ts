@@ -12,6 +12,7 @@ export class ObraService {
 
   saveObra(datosObra:Iobra, files:FileList)
   {
+    //se enviaran los datos en un body encapsulado
     const fd = new FormData();
     fd.append('titulo',datosObra.titulo);
     fd.append('descripcion',datosObra.descripcion);
