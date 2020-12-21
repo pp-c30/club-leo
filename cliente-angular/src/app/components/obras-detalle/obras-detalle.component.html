@@ -4,7 +4,7 @@
       <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
           <div *ngFor="let imagen of lista_imagenes; let primero = first" [ngClass]="{active:primero}" class="carousel-item">
-            <img style="height: 400px;" [src]="imagen.imagen_url" class="d-block w-100" alt="...">
+            <img style="height: 400px;" [src]="imagen.imagen_url" class="d-block" alt="...">
           </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -27,7 +27,7 @@
           {{fecha_obra}}
           <hr>
           <p><b>Descripción</b></p>
-          {{descripcion}}
+          <p [innerHtml]="descripcion"></p>
           <hr>
           <p><b>Categoria</b></p>
           {{categoria}}
