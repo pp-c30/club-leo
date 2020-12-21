@@ -23,9 +23,11 @@ export class DonacionesComponent implements OnInit {
     
 this.formDonacion = this.fb.group({
   id_donacion: [null],
-  donacion:['',[Validators.required]],
+  titulo:['',[Validators.required]],
   descripcion:['',[Validators.required, Validators.minLength(3)]],
   telefono:['',[Validators.required]],
+  categoria:[0],
+  correo:['',[Validators.required]],
 })
 
   }

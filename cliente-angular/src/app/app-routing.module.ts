@@ -47,7 +47,7 @@ const routes: Routes = [
     path:'ingreso',component:IngresoComponent
   },
   {
-    path:'**',redirectTo:'inicio', pathMatch:'full'
+    path:'',redirectTo:'/inicio', pathMatch:'full'
   },
   {
     path:'donaciones',component:DonacionesComponent
