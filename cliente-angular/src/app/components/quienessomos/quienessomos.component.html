@@ -1,0 +1,64 @@
+<div class="row">
+
+    <div class="col-sm-8">
+         
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="form-group">
+                    <input placeholder="Ingrese criterio de búsqueda" [(ngModel)]="buscarquienessomos" class= "form-control" type="text">
+                </div>
+            </div>
+        </div>
+
+       <table class="table table-striped">
+           <thead>
+               <tr>
+                <th>Id</th>
+                <th>Descripcion</th>
+               </tr>
+           </thead>
+           
+           <tbody>
+               <tr *ngFor="let fila of listquienessomos | filter:buscarquienessomos | paginate:{itemsPerPage:3,currentPage:p}">
+                <td>{{fila.id_qs}}</td>
+                <td>{{fila.descripcion}}</td>
+                <td>
+                    <div class="btn-group btn-group-sm">
+                        <button (click)="eliminarQuienessomos (fila.id_qs);" class='btn btn-danger'>Eliminar</button>
+                        <button (click)="editarQuienessomos(fila)" class='btn btn-primary'>Editar</button>
+
+                </div>
+                </td>
+               </tr>
+           </tbody>
+       </table>
+
+    </div>
+
+    <div class="col-sm-4">
+
+        <div class='card'>
+            <div class="card-header">Formulario de descripcion</div>
+            <div class="card-body">
+
+                
+                
+                <form [formGroup]="formQuienessomos" (ngSubmit)="guardarQuienesSomos()" novalidate>
+                    <input formControlName="id_qs" type="hidden">
+
+
+                    <div class="form-group">
+                        <input [ngClass]="{'is-invalid':(formQuienessomos.get('descripcion')?.touched || formQuienessomos.get('descripcion')?.dirty) && formQuienessomos.get('descripcion')?.invalid}" formControlName="descripcion" placeholder="ingrese Descripcion" type="text" class="form-control">
+                    <div class="invalid-feedback">
+                        <span *ngIf="formQuienessomos.get('descripcion').hasError('required')">Campo requerido </span>
+                        <span *ngIf="!formQuienessomos.get('descripcion').hasError('minLength')"> Minimo 3 caracteres</span>
+                    </div>
+                    </div>
+                
+                    <button [disabled]="formQuienessomos.invalid" class="btn btn-sucess">Guardar una Descripcion </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

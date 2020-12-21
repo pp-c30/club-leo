@@ -28,6 +28,7 @@ import { IngresoComponent } from './components/ingreso/ingreso.component';
 import { AuthGuard } from "./auth.guard";
 
 import { TokenInterceptorService } from "./services/token-interceptor.service";
+import { QuienessomosComponent } from './components/quienessomos/quienessomos.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { TokenInterceptorService } from "./services/token-interceptor.service";
     ContactoComponent,
     RegistroComponent,
     IngresoComponent,
+    QuienessomosComponent,
 
   ],
   imports: [

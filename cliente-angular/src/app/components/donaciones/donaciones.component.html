@@ -5,7 +5,7 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <input placeholder="Ingrese criterio de busqueda" [{ngModel}]="buscarDonacion" type="text" class="form-control">
+                            <input placeholder="Ingrese criterio de busqueda" [(ngModel)]="buscarDonacion" type="text" class="form-control">
                         </div>
                     </div>
                 </div>
@@ -58,14 +58,9 @@
             <div class="card-header">Formulario de donaciones</div>
             <div class="card-body">
 
-                
-                <form [formGroup]="formDonacion" (ngSubnit)="guardarDonacion()" novalidate>
-
-                    <input formControlName="id_donacion" type="hidden">
-
-
+                <form [formGroup]="formDonacion" (ngSubmit)="guardarDonacion()" novalidate>
                 <input formControlName="id_donacion" type="hidden">
-                <form [formGroup]="formDonacion" (ngSubmit)="guardarDonacion">
+                
 
                     <div class="form-group">
                         <input [ngClass]="{'is-invalid':(formDonacion.get('donacion')?.touched|| formDonacion.get('donacion')?.dirty) && formDonacion.get('donacion')?.invalid}" formControlName= "donacion" placeholder="ingrese donacion" type="text" class="form-control">
@@ -89,10 +84,9 @@
                      </div>
                     </div>
 
-                    <button [disabled]="formDonacion.invalid" class="btn btn-sucess">Guardar una Donación </button>"
+                    <button [disabled]="formDonacion.invalid" class="btn btn-sucess">Guardar una Donación </button>
                 </form>
             </div>
+        </div>
     </div>
-    </div>
-
 </div>
