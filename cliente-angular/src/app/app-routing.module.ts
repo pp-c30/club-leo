@@ -8,11 +8,11 @@ import { ObrasDetalleComponent } from './components/obras-detalle/obras-detalle.
 import { ConfiguracionObraComponent } from './components/configuracion-obra/configuracion-obra.component';
 import { AdminContactoComponent } from './components/admin-contacto/admin-contacto.component';
 import { ContactoComponent } from './components/contacto/contacto.component';
+
+import { DonacionesComponent } from "./components/donaciones/donaciones.component";
 import { RegistroComponent } from './components/registro/registro.component';
 import { IngresoComponent } from './components/ingreso/ingreso.component';
 import { AuthGuard } from "./auth.guard";
-
-
 
 const routes: Routes = [
   {
@@ -47,6 +47,9 @@ const routes: Routes = [
   },
   {
     path:'**',redirectTo:'inicio', pathMatch:'full'
+  },
+  {
+    path:'donaciones',component:DonacionesComponent
   },
 ];
 

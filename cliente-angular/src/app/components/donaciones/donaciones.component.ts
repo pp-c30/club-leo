@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DonacionesService } from "../../services/donaciones.service";
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Form, Validators } from '@angular/forms';
 import { IDonaciones } from 'src/app/models/donaciones';
 
 @Component({
@@ -14,13 +14,18 @@ export class DonacionesComponent implements OnInit {
 
   formDonacion: FormGroup;
 
+  buscarDonacion:any;
+
+  p:number;
+  
+
   constructor(private donacioneServ:DonacionesService, private fb: FormBuilder) { 
     
 this.formDonacion = this.fb.group({
   id_donacion: [null],
-  donacion:[''],
-  descripcion:[''],
-  telefono:[''],
+  donacion:['',[Validators.required]],
+  descripcion:['',[Validators.required, Validators.minLength(3)]],
+  telefono:['',[Validators.required]],
 })
 
   }
