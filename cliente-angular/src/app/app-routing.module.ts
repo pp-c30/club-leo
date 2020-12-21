@@ -8,6 +8,7 @@ import { ObrasDetalleComponent } from './components/obras-detalle/obras-detalle.
 import { ConfiguracionObraComponent } from './components/configuracion-obra/configuracion-obra.component';
 import { AdminContactoComponent } from './components/admin-contacto/admin-contacto.component';
 import { ContactoComponent } from './components/contacto/contacto.component';
+import { QuienessomosComponent } from "./components/quienessomos/quienessomos.component";
 
 import { DonacionesComponent } from "./components/donaciones/donaciones.component";
 import { RegistroComponent } from './components/registro/registro.component';
@@ -51,6 +52,9 @@ const routes: Routes = [
   {
     path:'donaciones',component:DonacionesComponent
   },
+{
+  path:'quienessomos',component:QuienessomosComponent
+},
 ];
 
 @NgModule({

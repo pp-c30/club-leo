@@ -36,7 +36,7 @@ this.formDonacion = this.fb.group({
 
  obtenerDonaciones(){
    this.donacioneServ.getDonaciones().subscribe(
-     resultado => this.listDonaciones = resultado,
+     resultado => {this.listDonaciones = resultado},
      error => console.log(error)
      )
    
