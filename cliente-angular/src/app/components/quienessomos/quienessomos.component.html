@@ -1,6 +1,6 @@
 <div class="row">
 
-    <div class="col-sm-8">
+    <div class="col-sm-4">
          
         <div class="row">
             <div class="col-sm-5">
@@ -35,7 +35,7 @@
 
     </div>
 
-    <div class="col-sm-4">
+    <div class="col-sm-8">
 
         <div class='card'>
             <div class="card-header">Formulario de descripcion</div>
@@ -48,7 +48,8 @@
 
 
                     <div class="form-group">
-                        <input [ngClass]="{'is-invalid':(formQuienessomos.get('descripcion')?.touched || formQuienessomos.get('descripcion')?.dirty) && formQuienessomos.get('descripcion')?.invalid}" formControlName="descripcion" placeholder="ingrese Descripcion" type="text" class="form-control">
+                        <angular-editor [ngClass]="{'is-invalid':(formQuienessomos.get('descripcion')?.touched || formQuienessomos.get('descripcion')?.dirty) && formQuienessomos.get('descripcion')?.invalid}" formControlName="descripcion" placeholder="Agregar descripcion" [config]="editorConfig"></angular-editor>
+    
                     <div class="invalid-feedback">
                         <span *ngIf="formQuienessomos.get('descripcion').hasError('required')">Campo requerido </span>
                         <span *ngIf="!formQuienessomos.get('descripcion').hasError('minLength')"> Minimo 3 caracteres</span>

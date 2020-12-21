@@ -27,7 +27,7 @@
            
            <tbody>
                <tr *ngFor="let donacion of listDonaciones | filter:buscarDonacion | paginate:{itemsPerPage:3,currentPage:p}">
-                <td>{{donacion.id_donacion</td>
+                <td>{{donacion.id_donacion}}</td>
                 <td>{{donacion.titulo}}</td>
                 <td>{{donacion.descripcion}}</td>
                 <td>{{donacion.telefono}}</td>
@@ -63,9 +63,9 @@
                 
 
                     <div class="form-group">
-                        <input [ngClass]="{'is-invalid':(formDonacion.get('donacion')?.touched|| formDonacion.get('donacion')?.dirty) && formDonacion.get('donacion')?.invalid}" formControlName= "donacion" placeholder="ingrese donacion" type="text" class="form-control">
+                        <input [ngClass]="{'is-invalid':(formDonacion.get('titulo')?.touched|| formDonacion.get('titulo')?.dirty) && formDonacion.get('titulo')?.invalid}" formControlName= "titulo" placeholder="ingrese donacion" type="text" class="form-control">
                     <div class="invalid-feedback">    
-                        <span *ngIf="formDonacion.get('donacion').hasError('required')">Campo requerido </span>
+                        <span *ngIf="formDonacion.get('titulo').hasError('required')">Campo requerido </span>
                     </div>
                     </div>
 
@@ -78,10 +78,24 @@
                     </div>
 
                     <div class="form-group">
+                        <input [ngClass]="{'is-invalid':(formDonacion.get('correo')?.touched|| formDonacion.get('correo')?.dirty) && formDonacion.get('correo')?.invalid}" formControlName="correo" placeholder="ingrese Correo" type="text" class="form-control">
+                        <div class="invalid-feedback">    
+                            <span *ngIf="formDonacion.get('correo').hasError('required')">Campo requerido </span>
+                         </div>
+                        </div>
+
+                    <div class="form-group">
                         <input [ngClass]="{'is-invalid':(formDonacion.get('telefono')?.touched|| formDonacion.get('telefono')?.dirty) && formDonacion.get('telefono')?.invalid}" formControlName="telefono" placeholder="ingrese Telefono" type="text" class="form-control">
                     <div class="invalid-feedback">    
                         <span *ngIf="formDonacion.get('telefono').hasError('required')">Campo requerido </span>
                      </div>
+                    </div>
+                    <div class="form-group">
+                        <select formControlName="categoria" class="form-control"> 
+                            <option value="0" disabled selected>Seleccione una categoria</option>
+                            <option value="1">Alimentos no perecederos</option>
+                            <option value="2">Materiales de construccion</option>
+                        </select>
                     </div>
 
                     <button [disabled]="formDonacion.invalid" class="btn btn-sucess">Guardar una Donación </button>
