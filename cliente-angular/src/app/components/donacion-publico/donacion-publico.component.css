@@ -1,11 +1,14 @@
+table{
+    margin-right: auto;
+    margin-left: auto;
+}
 
-
-.card
+.col-lg-7
 {
     margin-left: auto;
     margin-right: auto;
-    
 }
+
 
 @font-face{
     font-family: 'mifuente';
@@ -19,11 +22,5 @@ h1
     font-size: 46px;
 }
 
-h5
-{
-    width: 230px;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-}
+
 

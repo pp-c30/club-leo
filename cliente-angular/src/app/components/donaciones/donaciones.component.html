@@ -1,60 +1,74 @@
+<div class="p-3">
 <div class="row">
 
-    <div class="col-sm-8">
+    <div class="col-lg-8">
 
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <input placeholder="Ingrese criterio de busqueda" [(ngModel)]="buscarDonacion" type="text" class="form-control">
+                </div>
+            </div>
+        </div> 
+
+        <div class="card">
+            <div class="card-header">
+                Grilla de donaciones
+            </div>
+            <div class="card body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Titulo</th>
+                            <th>Descripcion</th>
+                            <th>Teléfono</th>
+                            <th>Correo</th>
+                            <th>Categoría</th>
+                            <th>Operaciones</th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+                        <tr *ngFor="let donacion of listDonaciones | filter:buscarDonacion | paginate:{itemsPerPage:3,currentPage:p}">
+                            <td>{{donacion.id_donacion}}</td>
+                            <td><div id="hola">{{donacion.titulo}}</div></td>
+                            <td><div id="hola">{{donacion.descripcion}}</div></td>
+                            <td><div id="hola">{{donacion.telefono}}</div></td>
+                            <td><div id="hola">{{donacion.correo}}</div></td>
+                            <td >
+                                <div *ngIf="donacion.categoria == 1; else loggedOut">
+                                    alimentos no perecederos
+                                </div>
+                                
+                                <ng-template #loggedOut>
+                                    materiales de construcción
+                                </ng-template>
+                            </td>
+                            <td>
+                                <div class="btn-group btn-group-sm">
+                                    <button (click)="eliminarDonacion (donacion.id_donacion);" class='btn btn-danger'>Eliminar</button>
+                                    <button (click)="editarDonacion(donacion)" class='btn btn-primary'>Editar</button>
+            
+                            </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            
                 <div class="row">
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <input placeholder="Ingrese criterio de busqueda" [(ngModel)]="buscarDonacion" type="text" class="form-control">
+                    <div class="col-sm-5">
+                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
                         </div>
-                    </div>
                 </div>
 
-        
-
-       <table class="table table-striped">
-           <thead>
-               <tr>
-                <th>Id</th>
-                <th>Titulo</th>
-                <th>Descripcion</th>
-                <th>Telefono</th>
-                <th>Correo</th>
-                <th>Categoria</th>
-                <th>Operaciones</th>
-               </tr>
-           </thead>
-           
-           <tbody>
-               <tr *ngFor="let donacion of listDonaciones | filter:buscarDonacion | paginate:{itemsPerPage:3,currentPage:p}">
-                <td>{{donacion.id_donacion}}</td>
-                <td>{{donacion.titulo}}</td>
-                <td>{{donacion.descripcion}}</td>
-                <td>{{donacion.telefono}}</td>
-                <td>{{donacion.correo}}</td>
-                <td>{{donacion.categoria}}</td>
-                <td>
-                    <div class="btn-group btn-group-sm">
-                        <button (click)="eliminarDonacion (donacion.id_donacion);" class='btn btn-danger'>Eliminar</button>
-                        <button (click)="editarDonacion(donacion)" class='btn btn-primary'>Editar</button>
-
-                </div>
-                </td>
-               </tr>
-           </tbody>
-       </table>
-
-       <div class="row">
-           <div class="col-sm-5">
-               <pagination-controls (pageChange)="p = $event"></pagination-controls>
-                       </div>
+            </div>
        </div>
-
     </div>
 
-    <div class="col-sm-4">
+    <div class="col-lg-4">
 
-        <div class='card'>
+        <div class="card">
             <div class="card-header">Formulario de donaciones</div>
             <div class="card-body">
 
@@ -63,14 +77,14 @@
                 
 
                     <div class="form-group">
-                        <input [ngClass]="{'is-invalid':(formDonacion.get('titulo')?.touched|| formDonacion.get('titulo')?.dirty) && formDonacion.get('titulo')?.invalid}" formControlName= "titulo" placeholder="ingrese donacion" type="text" class="form-control">
+                        <input [ngClass]="{'is-invalid':(formDonacion.get('titulo')?.touched|| formDonacion.get('titulo')?.dirty) && formDonacion.get('titulo')?.invalid}" formControlName= "titulo" placeholder="ingrese donación" type="text" class="form-control">
                     <div class="invalid-feedback">    
                         <span *ngIf="formDonacion.get('titulo').hasError('required')">Campo requerido </span>
                     </div>
                     </div>
 
                     <div class="form-group">
-                        <input [ngClass]="{'is-invalid':(formDonacion.get('descripcion')?.touched || formDonacion.get('descripcion')?.dirty) && formDonacion.get('descripcion')?.invalid}" formControlName="descripcion" placeholder="ingrese Descripcion" type="text" class="form-control">
+                        <textarea [ngClass]="{'is-invalid':(formDonacion.get('descripcion')?.touched || formDonacion.get('descripcion')?.dirty) && formDonacion.get('descripcion')?.invalid}" formControlName="descripcion" placeholder="ingrese Descripción" type="text" class="form-control"></textarea>
                     <div class="invalid-feedback">
                         <span *ngIf="formDonacion.get('descripcion').hasError('required')">Campo requerido </span>
                         <span *ngIf="!formDonacion.get('descripcion').hasError('minLength')"> Minimo 3 caracteres</span>
@@ -85,7 +99,7 @@
                         </div>
 
                     <div class="form-group">
-                        <input [ngClass]="{'is-invalid':(formDonacion.get('telefono')?.touched|| formDonacion.get('telefono')?.dirty) && formDonacion.get('telefono')?.invalid}" formControlName="telefono" placeholder="ingrese Telefono" type="text" class="form-control">
+                        <input [ngClass]="{'is-invalid':(formDonacion.get('telefono')?.touched|| formDonacion.get('telefono')?.dirty) && formDonacion.get('telefono')?.invalid}" formControlName="telefono" placeholder="ingrese Teléfono" type="text" class="form-control">
                     <div class="invalid-feedback">    
                         <span *ngIf="formDonacion.get('telefono').hasError('required')">Campo requerido </span>
                      </div>
@@ -94,13 +108,14 @@
                         <select formControlName="categoria" class="form-control"> 
                             <option value="0" disabled selected>Seleccione una categoria</option>
                             <option value="1">Alimentos no perecederos</option>
-                            <option value="2">Materiales de construccion</option>
+                            <option value="2">Materiales de construcción</option>
                         </select>
                     </div>
 
-                    <button [disabled]="formDonacion.invalid" class="btn btn-sucess">Guardar una Donación </button>
+                    <button [disabled]="formDonacion.invalid" class="btn btn-success">Guardar una Donación </button>
                 </form>
             </div>
         </div>
     </div>
+</div>
 </div>

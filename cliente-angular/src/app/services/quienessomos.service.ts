@@ -11,7 +11,7 @@ export class QuienessomosService {
   }
   updateQuienessomos(quieness:IQuienessomos){
     let id_qs=quieness.id_qs;
-    return this.http.put("http://localhost:3000/quienessomos"+id_qs, quieness);
+    return this.http.put("http://localhost:3000/quienessomos/"+id_qs, quieness);
   }
 
   saveQuienessomos (quieness:IQuienessomos){
@@ -20,7 +20,7 @@ export class QuienessomosService {
   }
 
   deleteQuienessomos (id_qs:number){
-  return this.http.delete("http://localhost:3000/quienessomos"+id_qs);
+  return this.http.delete("http://localhost:3000/quienessomos/"+id_qs);
   }
 
   getQuienessomos(){

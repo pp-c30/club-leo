@@ -14,6 +14,8 @@ import { DonacionesComponent } from "./components/donaciones/donaciones.componen
 import { RegistroComponent } from './components/registro/registro.component';
 import { IngresoComponent } from './components/ingreso/ingreso.component';
 import { AuthGuard } from "./auth.guard";
+import { QuienessomosPublicoComponent } from './components/quienessomos-publico/quienessomos-publico.component';
+import { DonacionPublicoComponent } from './components/donacion-publico/donacion-publico.component';
 
 const routes: Routes = [
   {
@@ -52,9 +54,16 @@ const routes: Routes = [
   {
     path:'donaciones',component:DonacionesComponent
   },
-{
-  path:'quienessomos',component:QuienessomosComponent
-},
+  {
+    path:'quienessomos',component:QuienessomosComponent
+  },
+  {
+    path:'quienessomos-publico',component:QuienessomosPublicoComponent
+  },
+  {
+    path:'donacion-publico',component:DonacionPublicoComponent
+  },
+
 ];
 
 @NgModule({

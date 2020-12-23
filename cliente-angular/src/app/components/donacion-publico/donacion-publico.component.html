@@ -1,0 +1,51 @@
+<div class="p-3">
+
+<h1 align="center">Donaciones</h1>
+
+<br><br><br>
+<div class="row">
+    <div class="col-lg-7">
+      <div *ngFor="let fila of lista_donacion">
+        <div class="mb-4" align="center">
+          <h6 align="center" class=" text-uppercase">{{fila.titulo}}</h6>
+          <!-- Gradient divider -->
+          <hr size="200">
+      </div>
+      <div class="card">
+        <div class="card body">
+<table  class="table table-striped">
+
+    <tbody>
+      <tr>
+        <th scope="row">descripción</th>
+        <td>{{fila.descripcion}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Teléfono</th>
+        <td>{{fila.telefono}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Correo</th>
+        <td>{{fila.correo}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Categoría</th>
+        <td>
+          <div *ngIf="fila.categoria == 1; else loggedOut">
+            alimentos no perecederos
+          </div>
+          
+          <ng-template #loggedOut>
+            materiales de construcción
+          </ng-template>
+        </td>
+      </tr>
+    </tbody>
+    
+  </table>
+ 
+</div>
+</div>
+<br><br><br><br>
+</div>
+</div>

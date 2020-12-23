@@ -13,6 +13,8 @@ export class ObrasComponent implements OnInit {
 
   lista_obras:Iobra[] = []; 
 
+  buscarObra:any ="";
+
   constructor(private serviceObra:ObraService, private router:Router) { }
 
   ngOnInit(): void {

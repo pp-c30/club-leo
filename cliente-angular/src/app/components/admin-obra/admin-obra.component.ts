@@ -25,8 +25,8 @@ export class AdminObraComponent implements OnInit {
   editorConfig: AngularEditorConfig = {
     editable: true,
       spellcheck: true,
-      height: 'auto',
-      minHeight: '0',
+      height: '200',
+      minHeight: '500',
       maxHeight: 'auto',
       width: 'auto',
       minWidth: '0',

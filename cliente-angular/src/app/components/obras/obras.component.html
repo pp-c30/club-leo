@@ -1,7 +1,16 @@
+<div class="p-3">
 <h1 align="center">Nuestras obras</h1>
 <br>
 <div class="row">
-  <div *ngFor="let obras of lista_obras" class="col-lg-3">
+  <div class="col-sm-3">
+      <div class="form-group">
+          <input placeholder="Buscar obra" [(ngModel)]="buscarObra" class="form-control mr-sm-2" type="search" aria-label="Search">
+      </div>
+  </div>
+  <br>
+</div>
+<div class="row">
+  <div *ngFor="let obras of lista_obras | filter:buscarObra" class="col-lg-3">
     <div class="card" style="width: 16rem;">
         <img style="height: 190px;" [src]="obras.imagen" class="card-img-top" alt="...">
           <div class="card-body">
@@ -11,4 +20,5 @@
     </div>
     <br>
   </div>
+</div>
 </div>
